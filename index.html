@@ -126,7 +126,7 @@
 
     .floating-capsule {
       position: fixed;
-      bottom: 1.5rem;
+      bottom: calc(1.5rem + env(safe-area-inset-bottom));
       right: 1.5rem;
       display: flex;
       align-items: center;
@@ -212,7 +212,7 @@
         font-size: 0.85rem;
       }
       .floating-capsule {
-        bottom: 1rem;
+        bottom: calc(1rem + env(safe-area-inset-bottom));
         right: 1rem;
       }
     }
@@ -2639,7 +2639,7 @@
 
   <!-- 右下角浮動膠囊控制列 -->
   <div class="floating-capsule">
-    <input type="number" id="amountInput" placeholder="輸入金額..." min="0">
+    <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
     <div class="btn-group">
       <button class="btn-minus" id="minusBtn">−</button>
       <button class="btn-plus" id="plusBtn">＋</button>
