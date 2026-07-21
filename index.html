@@ -52,16 +52,14 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-
-      /* 新增：因為標題改為固定在螢幕頂端，這裡把卡片上緣往下推，騰出空間給置頂欄 */
-      margin-top: 50px;
+      margin-top: 44px;
     }
 
     /* 表格中的「列」結構 */
     .table-row {
       display: flex;
       width: 100%;
-      border-bottom: 1px solid var(--border-color);
+      /* border-bottom: 1px solid var(--border-color); */
       align-items: middle;
       transition: background-color 0.2s ease;
     }
@@ -83,9 +81,9 @@
     }
 
     /* 分配與原本 table 一致的寬度比例 */
-    .col-1 { width: 15%; }
+    .col-1 { width: 20%; }
     .col-2 { width: 40%; }
-    .col-3 { width: 45%; }
+    .col-3 { width: 40%; }
 
     /* 終極修正：直接使用 fixed 固定在畫面最上方，100% 免疫任何滾動失效 */
     .table-header {
@@ -109,7 +107,7 @@
     .table-row.highlighted {
       background-color: var(--highlight-color) !important;
       position: relative;
-      outline: 2px solid var(--highlight-border);
+      /* outline: 2px solid var(--highlight-border); */
       z-index: 5;
     }
 
@@ -124,7 +122,7 @@
 
     .amount-range {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: #111827;
     }
 
@@ -229,9 +227,9 @@
   <div class="container">
     <!-- 標題列：獨立抽出至最外層以便 fixed 定位，寬度自動完美適應 -->
     <div class="table-header">
-      <div class="table-cell col-1">手續</div>
+      <div class="table-cell col-1">手續費</div>
       <div class="table-cell col-2">區間</div>
-      <div class="table-cell col-3">明細</div>
+      <div class="table-cell col-3">備註</div>
     </div>
 
     <div class="table-card">
