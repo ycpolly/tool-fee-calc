@@ -37,7 +37,8 @@
       color: var(--text-main);
       margin: 0;
       line-height: 1.5;
-      padding-bottom: 120px; /* 留出空間給底部放大的膠囊 */
+      padding-bottom: 120px;
+      /* 留出空間給底部放大的膠囊 */
     }
 
     .container {
@@ -47,6 +48,7 @@
     }
 
     /* 使用 Flexbox 打造的仿表格卡片 */
+
     .table-card {
       background-color: var(--card-bg);
       overflow: hidden;
@@ -56,6 +58,7 @@
     }
 
     /* 表格中的「列」結構 */
+
     .table-row {
       display: flex;
       width: 100%;
@@ -69,11 +72,13 @@
     }
 
     /* 斑馬紋交替背景色 */
+
     .table-body .table-row:nth-child(even) {
       background-color: var(--primary-light);
     }
 
     /* 欄位通用樣式 */
+
     .table-cell {
       padding: 0.75rem 1rem;
       display: flex;
@@ -81,19 +86,31 @@
     }
 
     /* 分配與原本 table 一致的寬度比例 */
-    .col-1 { width: 20%; }
-    .col-2 { width: 40%; }
-    .col-3 { width: 40%; }
+
+    .col-1 {
+      width: 20%;
+    }
+
+    .col-2 {
+      width: 40%;
+    }
+
+    .col-3 {
+      width: 40%;
+    }
 
     /* 終極修正：直接使用 fixed 固定在畫面最上方，100% 免疫任何滾動失效 */
+
     .table-header {
       display: flex;
       position: fixed;
       top: 0;
       left: 50%;
-      transform: translateX(-50%); /* 配合 left: 50% 讓它在任何螢幕寬度下都完美置中 */
+      transform: translateX(-50%);
+      /* 配合 left: 50% 讓它在任何螢幕寬度下都完美置中 */
       width: 100%;
-      max-width: 700px;            /* 寬度與卡片容器對齊 */
+      max-width: 700px;
+      /* 寬度與卡片容器對齊 */
       height: 44px;
       z-index: 100;
       background-color: var(--primary-color);
@@ -104,6 +121,7 @@
     }
 
     /* 當輸入金額命中區間時的高亮邊框框樣式 */
+
     .table-row.highlighted {
       background-color: var(--highlight-color) !important;
       position: relative;
@@ -133,6 +151,7 @@
     }
 
     /* 右下角浮動大膠囊控制列 */
+
     .floating-capsule {
       position: fixed;
       bottom: calc(1.5rem + env(safe-area-inset-bottom));
@@ -148,6 +167,7 @@
     }
 
     /* 放大輸入框 */
+
     .floating-capsule input[type="number"] {
       border: none;
       outline: none;
@@ -161,6 +181,7 @@
     }
 
     /* 隱藏輸入框自帶的微調按鈕 */
+
     .floating-capsule input[type="number"]::-webkit-outer-spin-button,
     .floating-capsule input[type="number"]::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -177,6 +198,7 @@
     }
 
     /* 放大按鈕與點擊熱區 */
+
     .floating-capsule button {
       border: none;
       background-color: var(--primary-light);
@@ -205,12 +227,14 @@
     }
 
     /* 防止雙擊放大 */
+
     .floating-capsule button,
     .floating-capsule input[type="number"] {
       touch-action: manipulation;
     }
 
     /* RWD 手機版微調 */
+
     @media (max-width: 480px) {
       .table-cell {
         padding: 0.6rem 0.5rem;
@@ -236,1004 +260,2383 @@
       <!-- 表身 -->
       <div class="table-body" id="feeTableBody">
         <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">1</span></div>
-          <div class="table-cell col-2"><div class="amount-range">702 - 1,403</div></div>
-          <div class="table-cell col-3"><div class="explanation">702 × 0.1425% = 1.0004<br>1,403 × 0.1425% = 1.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">2</span></div>
-          <div class="table-cell col-2"><div class="amount-range">1,404 - 2,105</div></div>
-          <div class="table-cell col-3"><div class="explanation">1,404 × 0.1425% = 2.0007<br>2,105 × 0.1425% = 2.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">3</span></div>
-          <div class="table-cell col-2"><div class="amount-range">2,106 - 2,807</div></div>
-          <div class="table-cell col-3"><div class="explanation">2,106 × 0.1425% = 3.0011<br>2,807 × 0.1425% = 4.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">4</span></div>
-          <div class="table-cell col-2"><div class="amount-range">2,808 - 3,508</div></div>
-          <div class="table-cell col-3"><div class="explanation">2,808 × 0.1425% = 4.0014<br>3,508 × 0.1425% = 4.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">5</span></div>
-          <div class="table-cell col-2"><div class="amount-range">3,509 - 4,210</div></div>
-          <div class="table-cell col-3"><div class="explanation">3,509 × 0.1425% = 5.0003<br>4,210 × 0.1425% = 5.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">6</span></div>
-          <div class="table-cell col-2"><div class="amount-range">4,211 - 4,912</div></div>
-          <div class="table-cell col-3"><div class="explanation">4,211 × 0.1425% = 6.0007<br>4,912 × 0.1425% = 6.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">7</span></div>
-          <div class="table-cell col-2"><div class="amount-range">4,913 - 5,614</div></div>
-          <div class="table-cell col-3"><div class="explanation">4,913 × 0.1425% = 7.0010<br>5,614 × 0.1425% = 8.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">8</span></div>
-          <div class="table-cell col-2"><div class="amount-range">5,615 - 6,315</div></div>
-          <div class="table-cell col-3"><div class="explanation">5,615 × 0.1425% = 8.0014<br>6,315 × 0.1425% = 8.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">9</span></div>
-          <div class="table-cell col-2"><div class="amount-range">6,316 - 7,017</div></div>
-          <div class="table-cell col-3"><div class="explanation">6,316 × 0.1425% = 9.0003<br>7,017 × 0.1425% = 9.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">10</span></div>
-          <div class="table-cell col-2"><div class="amount-range">7,018 - 7,719</div></div>
-          <div class="table-cell col-3"><div class="explanation">7,018 × 0.1425% = 10.0007<br>7,719 × 0.1425% = 10.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">11</span></div>
-          <div class="table-cell col-2"><div class="amount-range">7,720 - 8,421</div></div>
-          <div class="table-cell col-3"><div class="explanation">7,720 × 0.1425% = 11.0010<br>8,421 × 0.1425% = 11.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">12</span></div>
-          <div class="table-cell col-2"><div class="amount-range">8,422 - 9,122</div></div>
-          <div class="table-cell col-3"><div class="explanation">8,422 × 0.1425% = 12.0014<br>9,122 × 0.1425% = 12.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">13</span></div>
-          <div class="table-cell col-2"><div class="amount-range">9,123 - 9,824</div></div>
-          <div class="table-cell col-3"><div class="explanation">9,123 × 0.1425% = 13.0003<br>9,824 × 0.1425% = 13.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">14</span></div>
-          <div class="table-cell col-2"><div class="amount-range">9,825 - 10,526</div></div>
-          <div class="table-cell col-3"><div class="explanation">9,825 × 0.1425% = 14.0006<br>10,526 × 0.1425% = 14.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">15</span></div>
-          <div class="table-cell col-2"><div class="amount-range">10,527 - 11,228</div></div>
-          <div class="table-cell col-3"><div class="explanation">10,527 × 0.1425% = 15.0010<br>11,228 × 0.1425% = 15.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">16</span></div>
-          <div class="table-cell col-2"><div class="amount-range">11,229 - 11,929</div></div>
-          <div class="table-cell col-3"><div class="explanation">11,229 × 0.1425% = 16.0013<br>11,929 × 0.1425% = 16.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">17</span></div>
-          <div class="table-cell col-2"><div class="amount-range">11,930 - 12,631</div></div>
-          <div class="table-cell col-3"><div class="explanation">11,930 × 0.1425% = 17.0003<br>12,631 × 0.1425% = 17.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">18</span></div>
-          <div class="table-cell col-2"><div class="amount-range">12,632 - 13,333</div></div>
-          <div class="table-cell col-3"><div class="explanation">12,632 × 0.1425% = 18.0006<br>13,333 × 0.1425% = 18.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">19</span></div>
-          <div class="table-cell col-2"><div class="amount-range">13,334 - 14,035</div></div>
-          <div class="table-cell col-3"><div class="explanation">13,334 × 0.1425% = 19.0009<br>14,035 × 0.1425% = 19.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">20</span></div>
-          <div class="table-cell col-2"><div class="amount-range">14,036 - 14,736</div></div>
-          <div class="table-cell col-3"><div class="explanation">14,036 × 0.1425% = 20.0013<br>14,736 × 0.1425% = 20.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">21</span></div>
-          <div class="table-cell col-2"><div class="amount-range">14,737 - 15,438</div></div>
-          <div class="table-cell col-3"><div class="explanation">14,737 × 0.1425% = 21.0002<br>15,438 × 0.1425% = 21.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">22</span></div>
-          <div class="table-cell col-2"><div class="amount-range">15,439 - 16,140</div></div>
-          <div class="table-cell col-3"><div class="explanation">15,439 × 0.1425% = 22.0006<br>16,140 × 0.1425% = 22.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">23</span></div>
-          <div class="table-cell col-2"><div class="amount-range">16,141 - 16,842</div></div>
-          <div class="table-cell col-3"><div class="explanation">16,141 × 0.1425% = 23.0009<br>16,842 × 0.1425% = 23.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">24</span></div>
-          <div class="table-cell col-2"><div class="amount-range">16,843 - 17,543</div></div>
-          <div class="table-cell col-3"><div class="explanation">16,843 × 0.1425% = 24.0013<br>17,543 × 0.1425% = 24.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">25</span></div>
-          <div class="table-cell col-2"><div class="amount-range">17,544 - 18,245</div></div>
-          <div class="table-cell col-3"><div class="explanation">17,544 × 0.1425% = 25.0002<br>18,245 × 0.1425% = 25.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">26</span></div>
-          <div class="table-cell col-2"><div class="amount-range">18,246 - 18,947</div></div>
-          <div class="table-cell col-3"><div class="explanation">18,246 × 0.1425% = 26.0006<br>18,947 × 0.1425% = 26.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">27</span></div>
-          <div class="table-cell col-2"><div class="amount-range">18,948 - 19,649</div></div>
-          <div class="table-cell col-3"><div class="explanation">18,948 × 0.1425% = 27.0009<br>19,649 × 0.1425% = 27.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">28</span></div>
-          <div class="table-cell col-2"><div class="amount-range">19,650 - 20,350</div></div>
-          <div class="table-cell col-3"><div class="explanation">19,650 × 0.1425% = 28.0013<br>20,350 × 0.1425% = 28.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">29</span></div>
-          <div class="table-cell col-2"><div class="amount-range">20,351 - 21,052</div></div>
-          <div class="table-cell col-3"><div class="explanation">20,351 × 0.1425% = 29.0002<br>21,052 × 0.1425% = 29.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">30</span></div>
-          <div class="table-cell col-2"><div class="amount-range">21,053 - 21,754</div></div>
-          <div class="table-cell col-3"><div class="explanation">21,053 × 0.1425% = 30.0005<br>21,754 × 0.1425% = 30.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">31</span></div>
-          <div class="table-cell col-2"><div class="amount-range">21,755 - 22,456</div></div>
-          <div class="table-cell col-3"><div class="explanation">21,755 × 0.1425% = 31.0009<br>22,456 × 0.1425% = 31.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">32</span></div>
-          <div class="table-cell col-2"><div class="amount-range">22,457 - 23,157</div></div>
-          <div class="table-cell col-3"><div class="explanation">22,457 × 0.1425% = 32.0012<br>23,157 × 0.1425% = 32.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">33</span></div>
-          <div class="table-cell col-2"><div class="amount-range">23,158 - 23,859</div></div>
-          <div class="table-cell col-3"><div class="explanation">23,158 × 0.1425% = 33.0001<br>23,859 × 0.1425% = 33.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">34</span></div>
-          <div class="table-cell col-2"><div class="amount-range">23,860 - 24,561</div></div>
-          <div class="table-cell col-3"><div class="explanation">23,860 × 0.1425% = 34.0005<br>24,561 × 0.1425% = 34.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">35</span></div>
-          <div class="table-cell col-2"><div class="amount-range">24,562 - 25,263</div></div>
-          <div class="table-cell col-3"><div class="explanation">24,562 × 0.1425% = 35.0008<br>25,263 × 0.1425% = 35.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">36</span></div>
-          <div class="table-cell col-2"><div class="amount-range">25,264 - 25,964</div></div>
-          <div class="table-cell col-3"><div class="explanation">25,264 × 0.1425% = 36.0012<br>25,964 × 0.1425% = 36.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">37</span></div>
-          <div class="table-cell col-2"><div class="amount-range">25,965 - 26,666</div></div>
-          <div class="table-cell col-3"><div class="explanation">25,965 × 0.1425% = 37.0001<br>26,666 × 0.1425% = 37.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">38</span></div>
-          <div class="table-cell col-2"><div class="amount-range">26,667 - 27,368</div></div>
-          <div class="table-cell col-3"><div class="explanation">26,667 × 0.1425% = 38.0005<br>27,368 × 0.1425% = 38.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">39</span></div>
-          <div class="table-cell col-2"><div class="amount-range">27,369 - 28,070</div></div>
-          <div class="table-cell col-3"><div class="explanation">27,369 × 0.1425% = 39.0008<br>28,070 × 0.1425% = 39.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">40</span></div>
-          <div class="table-cell col-2"><div class="amount-range">28,071 - 28,771</div></div>
-          <div class="table-cell col-3"><div class="explanation">28,071 × 0.1425% = 40.0012<br>28,771 × 0.1425% = 40.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">41</span></div>
-          <div class="table-cell col-2"><div class="amount-range">28,772 - 29,473</div></div>
-          <div class="table-cell col-3"><div class="explanation">28,772 × 0.1425% = 41.0001<br>29,473 × 0.1425% = 41.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">42</span></div>
-          <div class="table-cell col-2"><div class="amount-range">29,474 - 30,175</div></div>
-          <div class="table-cell col-3"><div class="explanation">29,474 × 0.1425% = 42.0005<br>30,175 × 0.1425% = 42.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">43</span></div>
-          <div class="table-cell col-2"><div class="amount-range">30,176 - 30,877</div></div>
-          <div class="table-cell col-3"><div class="explanation">30,176 × 0.1425% = 43.0008<br>30,877 × 0.1425% = 43.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">44</span></div>
-          <div class="table-cell col-2"><div class="amount-range">30,878 - 31,578</div></div>
-          <div class="table-cell col-3"><div class="explanation">30,878 × 0.1425% = 44.0012<br>31,578 × 0.1425% = 44.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">45</span></div>
-          <div class="table-cell col-2"><div class="amount-range">31,579 - 32,280</div></div>
-          <div class="table-cell col-3"><div class="explanation">31,579 × 0.1425% = 45.0001<br>32,280 × 0.1425% = 45.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">46</span></div>
-          <div class="table-cell col-2"><div class="amount-range">32,281 - 32,982</div></div>
-          <div class="table-cell col-3"><div class="explanation">32,281 × 0.1425% = 46.0004<br>32,982 × 0.1425% = 46.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">47</span></div>
-          <div class="table-cell col-2"><div class="amount-range">32,983 - 33,684</div></div>
-          <div class="table-cell col-3"><div class="explanation">32,983 × 0.1425% = 47.0008<br>33,684 × 0.1425% = 47.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">48</span></div>
-          <div class="table-cell col-2"><div class="amount-range">33,685 - 34,385</div></div>
-          <div class="table-cell col-3"><div class="explanation">33,685 × 0.1425% = 48.0011<br>34,385 × 0.1425% = 48.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">49</span></div>
-          <div class="table-cell col-2"><div class="amount-range">34,386 - 35,087</div></div>
-          <div class="table-cell col-3"><div class="explanation">34,386 × 0.1425% = 49.0001<br>35,087 × 0.1425% = 49.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">50</span></div>
-          <div class="table-cell col-2"><div class="amount-range">35,088 - 35,789</div></div>
-          <div class="table-cell col-3"><div class="explanation">35,088 × 0.1425% = 50.0004<br>35,789 × 0.1425% = 50.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">51</span></div>
-          <div class="table-cell col-2"><div class="amount-range">35,790 - 36,491</div></div>
-          <div class="table-cell col-3"><div class="explanation">35,790 × 0.1425% = 51.0008<br>36,491 × 0.1425% = 51.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">52</span></div>
-          <div class="table-cell col-2"><div class="amount-range">36,492 - 37,192</div></div>
-          <div class="table-cell col-3"><div class="explanation">36,492 × 0.1425% = 52.0011<br>37,192 × 0.1425% = 52.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">53</span></div>
-          <div class="table-cell col-2"><div class="amount-range">37,193 - 37,894</div></div>
-          <div class="table-cell col-3"><div class="explanation">37,193 × 0.1425% = 53.0000<br>37,894 × 0.1425% = 53.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">54</span></div>
-          <div class="table-cell col-2"><div class="amount-range">37,895 - 38,596</div></div>
-          <div class="table-cell col-3"><div class="explanation">37,895 × 0.1425% = 54.0004<br>38,596 × 0.1425% = 54.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">55</span></div>
-          <div class="table-cell col-2"><div class="amount-range">38,597 - 39,298</div></div>
-          <div class="table-cell col-3"><div class="explanation">38,597 × 0.1425% = 55.0007<br>39,298 × 0.1425% = 55.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">56</span></div>
-          <div class="table-cell col-2"><div class="amount-range">39,299 - 39,999</div></div>
-          <div class="table-cell col-3"><div class="explanation">39,299 × 0.1425% = 56.0011<br>39,999 × 0.1425% = 56.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">57</span></div>
-          <div class="table-cell col-2"><div class="amount-range">40,000 - 40,701</div></div>
-          <div class="table-cell col-3"><div class="explanation">40,000 × 0.1425% = 57.0000<br>40,701 × 0.1425% = 57.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">58</span></div>
-          <div class="table-cell col-2"><div class="amount-range">40,702 - 41,403</div></div>
-          <div class="table-cell col-3"><div class="explanation">40,702 × 0.1425% = 58.0004<br>41,403 × 0.1425% = 58.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">59</span></div>
-          <div class="table-cell col-2"><div class="amount-range">41,404 - 42,105</div></div>
-          <div class="table-cell col-3"><div class="explanation">41,404 × 0.1425% = 59.0007<br>42,105 × 0.1425% = 59.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">60</span></div>
-          <div class="table-cell col-2"><div class="amount-range">42,106 - 42,807</div></div>
-          <div class="table-cell col-3"><div class="explanation">42,106 × 0.1425% = 60.0010<br>42,807 × 0.1425% = 61.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">61</span></div>
-          <div class="table-cell col-2"><div class="amount-range">42,808 - 43,508</div></div>
-          <div class="table-cell col-3"><div class="explanation">42,808 × 0.1425% = 61.0014<br>43,508 × 0.1425% = 61.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">62</span></div>
-          <div class="table-cell col-2"><div class="amount-range">43,509 - 44,210</div></div>
-          <div class="table-cell col-3"><div class="explanation">43,509 × 0.1425% = 62.0003<br>44,210 × 0.1425% = 62.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">63</span></div>
-          <div class="table-cell col-2"><div class="amount-range">44,211 - 44,912</div></div>
-          <div class="table-cell col-3"><div class="explanation">44,211 × 0.1425% = 63.0007<br>44,912 × 0.1425% = 63.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">64</span></div>
-          <div class="table-cell col-2"><div class="amount-range">44,913 - 45,614</div></div>
-          <div class="table-cell col-3"><div class="explanation">44,913 × 0.1425% = 64.0010<br>45,614 × 0.1425% = 64.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">65</span></div>
-          <div class="table-cell col-2"><div class="amount-range">45,615 - 46,315</div></div>
-          <div class="table-cell col-3"><div class="explanation">45,615 × 0.1425% = 65.0014<br>46,315 × 0.1425% = 65.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">66</span></div>
-          <div class="table-cell col-2"><div class="amount-range">46,316 - 47,017</div></div>
-          <div class="table-cell col-3"><div class="explanation">46,316 × 0.1425% = 66.0003<br>47,017 × 0.1425% = 66.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">67</span></div>
-          <div class="table-cell col-2"><div class="amount-range">47,018 - 47,719</div></div>
-          <div class="table-cell col-3"><div class="explanation">47,018 × 0.1425% = 67.0007<br>47,719 × 0.1425% = 67.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">68</span></div>
-          <div class="table-cell col-2"><div class="amount-range">47,720 - 48,421</div></div>
-          <div class="table-cell col-3"><div class="explanation">47,720 × 0.1425% = 68.0010<br>48,421 × 0.1425% = 68.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">69</span></div>
-          <div class="table-cell col-2"><div class="amount-range">48,422 - 49,122</div></div>
-          <div class="table-cell col-3"><div class="explanation">48,422 × 0.1425% = 69.0014<br>49,122 × 0.1425% = 69.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">70</span></div>
-          <div class="table-cell col-2"><div class="amount-range">49,123 - 49,824</div></div>
-          <div class="table-cell col-3"><div class="explanation">49,123 × 0.1425% = 70.0003<br>49,824 × 0.1425% = 70.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">71</span></div>
-          <div class="table-cell col-2"><div class="amount-range">49,825 - 50,526</div></div>
-          <div class="table-cell col-3"><div class="explanation">49,825 × 0.1425% = 71.0006<br>50,526 × 0.1425% = 71.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">72</span></div>
-          <div class="table-cell col-2"><div class="amount-range">50,527 - 51,228</div></div>
-          <div class="table-cell col-3"><div class="explanation">50,527 × 0.1425% = 72.0010<br>51,228 × 0.1425% = 72.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">73</span></div>
-          <div class="table-cell col-2"><div class="amount-range">51,229 - 51,929</div></div>
-          <div class="table-cell col-3"><div class="explanation">51,229 × 0.1425% = 73.0013<br>51,929 × 0.1425% = 73.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">74</span></div>
-          <div class="table-cell col-2"><div class="amount-range">51,930 - 52,631</div></div>
-          <div class="table-cell col-3"><div class="explanation">51,930 × 0.1425% = 74.0003<br>52,631 × 0.1425% = 74.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">75</span></div>
-          <div class="table-cell col-2"><div class="amount-range">52,632 - 53,333</div></div>
-          <div class="table-cell col-3"><div class="explanation">52,632 × 0.1425% = 75.0006<br>53,333 × 0.1425% = 75.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">76</span></div>
-          <div class="table-cell col-2"><div class="amount-range">53,334 - 54,035</div></div>
-          <div class="table-cell col-3"><div class="explanation">53,334 × 0.1425% = 76.0010<br>54,035 × 0.1425% = 76.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">77</span></div>
-          <div class="table-cell col-2"><div class="amount-range">54,036 - 54,736</div></div>
-          <div class="table-cell col-3"><div class="explanation">54,036 × 0.1425% = 77.0013<br>54,736 × 0.1425% = 77.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">78</span></div>
-          <div class="table-cell col-2"><div class="amount-range">54,737 - 55,438</div></div>
-          <div class="table-cell col-3"><div class="explanation">54,737 × 0.1425% = 78.0002<br>55,438 × 0.1425% = 78.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">79</span></div>
-          <div class="table-cell col-2"><div class="amount-range">55,439 - 56,140</div></div>
-          <div class="table-cell col-3"><div class="explanation">55,439 × 0.1425% = 79.0006<br>56,140 × 0.1425% = 79.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">80</span></div>
-          <div class="table-cell col-2"><div class="amount-range">56,141 - 56,842</div></div>
-          <div class="table-cell col-3"><div class="explanation">56,141 × 0.1425% = 80.0009<br>56,842 × 0.1425% = 80.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">81</span></div>
-          <div class="table-cell col-2"><div class="amount-range">56,843 - 57,543</div></div>
-          <div class="table-cell col-3"><div class="explanation">56,843 × 0.1425% = 81.0013<br>57,543 × 0.1425% = 81.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">82</span></div>
-          <div class="table-cell col-2"><div class="amount-range">57,544 - 58,245</div></div>
-          <div class="table-cell col-3"><div class="explanation">57,544 × 0.1425% = 82.0002<br>58,245 × 0.1425% = 82.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">83</span></div>
-          <div class="table-cell col-2"><div class="amount-range">58,246 - 58,947</div></div>
-          <div class="table-cell col-3"><div class="explanation">58,246 × 0.1425% = 83.0006<br>58,947 × 0.1425% = 83.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">84</span></div>
-          <div class="table-cell col-2"><div class="amount-range">58,948 - 59,649</div></div>
-          <div class="table-cell col-3"><div class="explanation">58,948 × 0.1425% = 84.0009<br>59,649 × 0.1425% = 84.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">85</span></div>
-          <div class="table-cell col-2"><div class="amount-range">59,650 - 60,350</div></div>
-          <div class="table-cell col-3"><div class="explanation">59,650 × 0.1425% = 85.0012<br>60,350 × 0.1425% = 85.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">86</span></div>
-          <div class="table-cell col-2"><div class="amount-range">60,351 - 61,052</div></div>
-          <div class="table-cell col-3"><div class="explanation">60,351 × 0.1425% = 86.0002<br>61,052 × 0.1425% = 86.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">87</span></div>
-          <div class="table-cell col-2"><div class="amount-range">61,053 - 61,754</div></div>
-          <div class="table-cell col-3"><div class="explanation">61,053 × 0.1425% = 87.0005<br>61,754 × 0.1425% = 87.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">88</span></div>
-          <div class="table-cell col-2"><div class="amount-range">61,755 - 62,456</div></div>
-          <div class="table-cell col-3"><div class="explanation">61,755 × 0.1425% = 88.0009<br>62,456 × 0.1425% = 88.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">89</span></div>
-          <div class="table-cell col-2"><div class="amount-range">62,457 - 63,157</div></div>
-          <div class="table-cell col-3"><div class="explanation">62,457 × 0.1425% = 89.0012<br>63,157 × 0.1425% = 89.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">90</span></div>
-          <div class="table-cell col-2"><div class="amount-range">63,158 - 63,859</div></div>
-          <div class="table-cell col-3"><div class="explanation">63,158 × 0.1425% = 90.0002<br>63,859 × 0.1425% = 90.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">91</span></div>
-          <div class="table-cell col-2"><div class="amount-range">63,860 - 64,561</div></div>
-          <div class="table-cell col-3"><div class="explanation">63,860 × 0.1425% = 91.0005<br>64,561 × 0.1425% = 91.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">92</span></div>
-          <div class="table-cell col-2"><div class="amount-range">64,562 - 65,263</div></div>
-          <div class="table-cell col-3"><div class="explanation">64,562 × 0.1425% = 92.0008<br>65,263 × 0.1425% = 92.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">93</span></div>
-          <div class="table-cell col-2"><div class="amount-range">65,264 - 65,964</div></div>
-          <div class="table-cell col-3"><div class="explanation">65,264 × 0.1425% = 93.0012<br>65,964 × 0.1425% = 93.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">94</span></div>
-          <div class="table-cell col-2"><div class="amount-range">65,965 - 66,666</div></div>
-          <div class="table-cell col-3"><div class="explanation">65,965 × 0.1425% = 94.0001<br>66,666 × 0.1425% = 94.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">95</span></div>
-          <div class="table-cell col-2"><div class="amount-range">66,667 - 67,368</div></div>
-          <div class="table-cell col-3"><div class="explanation">66,667 × 0.1425% = 95.0005<br>67,368 × 0.1425% = 95.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">96</span></div>
-          <div class="table-cell col-2"><div class="amount-range">67,369 - 68,070</div></div>
-          <div class="table-cell col-3"><div class="explanation">67,369 × 0.1425% = 96.0008<br>68,070 × 0.1425% = 96.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">97</span></div>
-          <div class="table-cell col-2"><div class="amount-range">68,071 - 68,771</div></div>
-          <div class="table-cell col-3"><div class="explanation">68,071 × 0.1425% = 97.0012<br>68,771 × 0.1425% = 97.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">98</span></div>
-          <div class="table-cell col-2"><div class="amount-range">68,772 - 69,473</div></div>
-          <div class="table-cell col-3"><div class="explanation">68,772 × 0.1425% = 98.0001<br>69,473 × 0.1425% = 98.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">99</span></div>
-          <div class="table-cell col-2"><div class="amount-range">69,474 - 70,175</div></div>
-          <div class="table-cell col-3"><div class="explanation">69,474 × 0.1425% = 99.0005<br>70,175 × 0.1425% = 99.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">100</span></div>
-          <div class="table-cell col-2"><div class="amount-range">70,176 - 70,877</div></div>
-          <div class="table-cell col-3"><div class="explanation">70,176 × 0.1425% = 100.0008<br>70,877 × 0.1425% = 100.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">101</span></div>
-          <div class="table-cell col-2"><div class="amount-range">70,878 - 71,578</div></div>
-          <div class="table-cell col-3"><div class="explanation">70,878 × 0.1425% = 101.0012<br>71,578 × 0.1425% = 101.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">102</span></div>
-          <div class="table-cell col-2"><div class="amount-range">71,579 - 72,280</div></div>
-          <div class="table-cell col-3"><div class="explanation">71,579 × 0.1425% = 102.0001<br>72,280 × 0.1425% = 102.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">103</span></div>
-          <div class="table-cell col-2"><div class="amount-range">72,281 - 72,982</div></div>
-          <div class="table-cell col-3"><div class="explanation">72,281 × 0.1425% = 103.0004<br>72,982 × 0.1425% = 103.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">104</span></div>
-          <div class="table-cell col-2"><div class="amount-range">72,983 - 73,684</div></div>
-          <div class="table-cell col-3"><div class="explanation">72,983 × 0.1425% = 104.0008<br>73,684 × 0.1425% = 104.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">105</span></div>
-          <div class="table-cell col-2"><div class="amount-range">73,685 - 74,385</div></div>
-          <div class="table-cell col-3"><div class="explanation">73,685 × 0.1425% = 105.0011<br>74,385 × 0.1425% = 105.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">106</span></div>
-          <div class="table-cell col-2"><div class="amount-range">74,386 - 75,087</div></div>
-          <div class="table-cell col-3"><div class="explanation">74,386 × 0.1425% = 106.0001<br>75,087 × 0.1425% = 106.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">107</span></div>
-          <div class="table-cell col-2"><div class="amount-range">75,088 - 75,789</div></div>
-          <div class="table-cell col-3"><div class="explanation">75,088 × 0.1425% = 107.0004<br>75,789 × 0.1425% = 107.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">108</span></div>
-          <div class="table-cell col-2"><div class="amount-range">75,790 - 76,491</div></div>
-          <div class="table-cell col-3"><div class="explanation">75,790 × 0.1425% = 108.0008<br>76,491 × 0.1425% = 108.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">109</span></div>
-          <div class="table-cell col-2"><div class="amount-range">76,492 - 77,192</div></div>
-          <div class="table-cell col-3"><div class="explanation">76,492 × 0.1425% = 109.0011<br>77,192 × 0.1425% = 109.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">110</span></div>
-          <div class="table-cell col-2"><div class="amount-range">77,193 - 77,894</div></div>
-          <div class="table-cell col-3"><div class="explanation">77,193 × 0.1425% = 110.0000<br>77,894 × 0.1425% = 110.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">111</span></div>
-          <div class="table-cell col-2"><div class="amount-range">77,895 - 78,596</div></div>
-          <div class="table-cell col-3"><div class="explanation">77,895 × 0.1425% = 111.0004<br>78,596 × 0.1425% = 111.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">112</span></div>
-          <div class="table-cell col-2"><div class="amount-range">78,597 - 79,298</div></div>
-          <div class="table-cell col-3"><div class="explanation">78,597 × 0.1425% = 112.0007<br>79,298 × 0.1425% = 112.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">113</span></div>
-          <div class="table-cell col-2"><div class="amount-range">79,299 - 79,999</div></div>
-          <div class="table-cell col-3"><div class="explanation">79,299 × 0.1425% = 113.0011<br>79,999 × 0.1425% = 113.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">114</span></div>
-          <div class="table-cell col-2"><div class="amount-range">80,000 - 80,701</div></div>
-          <div class="table-cell col-3"><div class="explanation">80,000 × 0.1425% = 114.0000<br>80,701 × 0.1425% = 114.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">115</span></div>
-          <div class="table-cell col-2"><div class="amount-range">80,702 - 81,403</div></div>
-          <div class="table-cell col-3"><div class="explanation">80,702 × 0.1425% = 115.0003<br>81,403 × 0.1425% = 115.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">116</span></div>
-          <div class="table-cell col-2"><div class="amount-range">81,404 - 82,105</div></div>
-          <div class="table-cell col-3"><div class="explanation">81,404 × 0.1425% = 116.0007<br>82,105 × 0.1425% = 116.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">117</span></div>
-          <div class="table-cell col-2"><div class="amount-range">82,106 - 82,807</div></div>
-          <div class="table-cell col-3"><div class="explanation">82,106 × 0.1425% = 117.0011<br>82,807 × 0.1425% = 118.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">118</span></div>
-          <div class="table-cell col-2"><div class="amount-range">82,808 - 83,508</div></div>
-          <div class="table-cell col-3"><div class="explanation">82,808 × 0.1425% = 118.0014<br>83,508 × 0.1425% = 118.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">119</span></div>
-          <div class="table-cell col-2"><div class="amount-range">83,509 - 84,210</div></div>
-          <div class="table-cell col-3"><div class="explanation">83,509 × 0.1425% = 119.0003<br>84,210 × 0.1425% = 119.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">120</span></div>
-          <div class="table-cell col-2"><div class="amount-range">84,211 - 84,912</div></div>
-          <div class="table-cell col-3"><div class="explanation">84,211 × 0.1425% = 120.0007<br>84,912 × 0.1425% = 120.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">121</span></div>
-          <div class="table-cell col-2"><div class="amount-range">84,913 - 85,614</div></div>
-          <div class="table-cell col-3"><div class="explanation">84,913 × 0.1425% = 121.0010<br>85,614 × 0.1425% = 121.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">122</span></div>
-          <div class="table-cell col-2"><div class="amount-range">85,615 - 86,315</div></div>
-          <div class="table-cell col-3"><div class="explanation">85,615 × 0.1425% = 122.0014<br>86,315 × 0.1425% = 122.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">123</span></div>
-          <div class="table-cell col-2"><div class="amount-range">86,316 - 87,017</div></div>
-          <div class="table-cell col-3"><div class="explanation">86,316 × 0.1425% = 123.0003<br>87,017 × 0.1425% = 123.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">124</span></div>
-          <div class="table-cell col-2"><div class="amount-range">87,018 - 87,719</div></div>
-          <div class="table-cell col-3"><div class="explanation">87,018 × 0.1425% = 124.0007<br>87,719 × 0.1425% = 124.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">125</span></div>
-          <div class="table-cell col-2"><div class="amount-range">87,720 - 88,421</div></div>
-          <div class="table-cell col-3"><div class="explanation">87,720 × 0.1425% = 125.0010<br>88,421 × 0.1425% = 125.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">126</span></div>
-          <div class="table-cell col-2"><div class="amount-range">88,422 - 89,122</div></div>
-          <div class="table-cell col-3"><div class="explanation">88,422 × 0.1425% = 126.0014<br>89,122 × 0.1425% = 126.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">127</span></div>
-          <div class="table-cell col-2"><div class="amount-range">89,123 - 89,824</div></div>
-          <div class="table-cell col-3"><div class="explanation">89,123 × 0.1425% = 127.0003<br>89,824 × 0.1425% = 127.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">128</span></div>
-          <div class="table-cell col-2"><div class="amount-range">89,825 - 90,526</div></div>
-          <div class="table-cell col-3"><div class="explanation">89,825 × 0.1425% = 128.0006<br>90,526 × 0.1425% = 128.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">129</span></div>
-          <div class="table-cell col-2"><div class="amount-range">90,527 - 91,228</div></div>
-          <div class="table-cell col-3"><div class="explanation">90,527 × 0.1425% = 129.0010<br>91,228 × 0.1425% = 129.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">130</span></div>
-          <div class="table-cell col-2"><div class="amount-range">91,229 - 91,929</div></div>
-          <div class="table-cell col-3"><div class="explanation">91,229 × 0.1425% = 130.0013<br>91,929 × 0.1425% = 130.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">131</span></div>
-          <div class="table-cell col-2"><div class="amount-range">91,930 - 92,631</div></div>
-          <div class="table-cell col-3"><div class="explanation">91,930 × 0.1425% = 131.0002<br>92,631 × 0.1425% = 131.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">132</span></div>
-          <div class="table-cell col-2"><div class="amount-range">92,632 - 93,333</div></div>
-          <div class="table-cell col-3"><div class="explanation">92,632 × 0.1425% = 132.0006<br>93,333 × 0.1425% = 132.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">133</span></div>
-          <div class="table-cell col-2"><div class="amount-range">93,334 - 94,035</div></div>
-          <div class="table-cell col-3"><div class="explanation">93,334 × 0.1425% = 133.0010<br>94,035 × 0.1425% = 133.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">134</span></div>
-          <div class="table-cell col-2"><div class="amount-range">94,036 - 94,736</div></div>
-          <div class="table-cell col-3"><div class="explanation">94,036 × 0.1425% = 134.0013<br>94,736 × 0.1425% = 134.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">135</span></div>
-          <div class="table-cell col-2"><div class="amount-range">94,737 - 95,438</div></div>
-          <div class="table-cell col-3"><div class="explanation">94,737 × 0.1425% = 135.0002<br>95,438 × 0.1425% = 135.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">136</span></div>
-          <div class="table-cell col-2"><div class="amount-range">95,439 - 96,140</div></div>
-          <div class="table-cell col-3"><div class="explanation">95,439 × 0.1425% = 136.0006<br>96,140 × 0.1425% = 136.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">137</span></div>
-          <div class="table-cell col-2"><div class="amount-range">96,141 - 96,842</div></div>
-          <div class="table-cell col-3"><div class="explanation">96,141 × 0.1425% = 137.0009<br>96,842 × 0.1425% = 137.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">138</span></div>
-          <div class="table-cell col-2"><div class="amount-range">96,843 - 97,543</div></div>
-          <div class="table-cell col-3"><div class="explanation">96,843 × 0.1425% = 138.0013<br>97,543 × 0.1425% = 138.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">139</span></div>
-          <div class="table-cell col-2"><div class="amount-range">97,544 - 98,245</div></div>
-          <div class="table-cell col-3"><div class="explanation">97,544 × 0.1425% = 139.0002<br>98,245 × 0.1425% = 139.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">140</span></div>
-          <div class="table-cell col-2"><div class="amount-range">98,246 - 98,947</div></div>
-          <div class="table-cell col-3"><div class="explanation">98,246 × 0.1425% = 140.0006<br>98,947 × 0.1425% = 140.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">141</span></div>
-          <div class="table-cell col-2"><div class="amount-range">98,948 - 99,649</div></div>
-          <div class="table-cell col-3"><div class="explanation">98,948 × 0.1425% = 141.0009<br>99,649 × 0.1425% = 141.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">142</span></div>
-          <div class="table-cell col-2"><div class="amount-range">99,650 - 100,350</div></div>
-          <div class="table-cell col-3"><div class="explanation">99,650 × 0.1425% = 142.0012<br>100,350 × 0.1425% = 142.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">143</span></div>
-          <div class="table-cell col-2"><div class="amount-range">100,351 - 101,052</div></div>
-          <div class="table-cell col-3"><div class="explanation">100,351 × 0.1425% = 143.0002<br>101,052 × 0.1425% = 143.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">144</span></div>
-          <div class="table-cell col-2"><div class="amount-range">101,053 - 101,754</div></div>
-          <div class="table-cell col-3"><div class="explanation">101,053 × 0.1425% = 144.0005<br>101,754 × 0.1425% = 144.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">145</span></div>
-          <div class="table-cell col-2"><div class="amount-range">101,755 - 102,456</div></div>
-          <div class="table-cell col-3"><div class="explanation">101,755 × 0.1425% = 145.0009<br>102,456 × 0.1425% = 145.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">146</span></div>
-          <div class="table-cell col-2"><div class="amount-range">102,457 - 103,157</div></div>
-          <div class="table-cell col-3"><div class="explanation">102,457 × 0.1425% = 146.0012<br>103,157 × 0.1425% = 146.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">147</span></div>
-          <div class="table-cell col-2"><div class="amount-range">103,158 - 103,859</div></div>
-          <div class="table-cell col-3"><div class="explanation">103,158 × 0.1425% = 147.0002<br>103,859 × 0.1425% = 147.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">148</span></div>
-          <div class="table-cell col-2"><div class="amount-range">103,860 - 104,561</div></div>
-          <div class="table-cell col-3"><div class="explanation">103,860 × 0.1425% = 148.0005<br>104,561 × 0.1425% = 148.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">149</span></div>
-          <div class="table-cell col-2"><div class="amount-range">104,562 - 105,263</div></div>
-          <div class="table-cell col-3"><div class="explanation">104,562 × 0.1425% = 149.0009<br>105,263 × 0.1425% = 149.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">150</span></div>
-          <div class="table-cell col-2"><div class="amount-range">105,264 - 105,964</div></div>
-          <div class="table-cell col-3"><div class="explanation">105,264 × 0.1425% = 150.0012<br>105,964 × 0.1425% = 150.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">151</span></div>
-          <div class="table-cell col-2"><div class="amount-range">105,965 - 106,666</div></div>
-          <div class="table-cell col-3"><div class="explanation">105,965 × 0.1425% = 151.0001<br>106,666 × 0.1425% = 151.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">152</span></div>
-          <div class="table-cell col-2"><div class="amount-range">106,667 - 107,368</div></div>
-          <div class="table-cell col-3"><div class="explanation">106,667 × 0.1425% = 152.0005<br>107,368 × 0.1425% = 152.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">153</span></div>
-          <div class="table-cell col-2"><div class="amount-range">107,369 - 108,070</div></div>
-          <div class="table-cell col-3"><div class="explanation">107,369 × 0.1425% = 153.0008<br>108,070 × 0.1425% = 153.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">154</span></div>
-          <div class="table-cell col-2"><div class="amount-range">108,071 - 108,771</div></div>
-          <div class="table-cell col-3"><div class="explanation">108,071 × 0.1425% = 154.0012<br>108,771 × 0.1425% = 154.9987</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">155</span></div>
-          <div class="table-cell col-2"><div class="amount-range">108,772 - 109,473</div></div>
-          <div class="table-cell col-3"><div class="explanation">108,772 × 0.1425% = 155.0001<br>109,473 × 0.1425% = 155.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">156</span></div>
-          <div class="table-cell col-2"><div class="amount-range">109,474 - 110,175</div></div>
-          <div class="table-cell col-3"><div class="explanation">109,474 × 0.1425% = 156.0005<br>110,175 × 0.1425% = 156.9994</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">157</span></div>
-          <div class="table-cell col-2"><div class="amount-range">110,176 - 110,877</div></div>
-          <div class="table-cell col-3"><div class="explanation">110,176 × 0.1425% = 157.0008<br>110,877 × 0.1425% = 157.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">158</span></div>
-          <div class="table-cell col-2"><div class="amount-range">110,878 - 111,578</div></div>
-          <div class="table-cell col-3"><div class="explanation">110,878 × 0.1425% = 158.0011<br>111,578 × 0.1425% = 158.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">159</span></div>
-          <div class="table-cell col-2"><div class="amount-range">111,579 - 112,280</div></div>
-          <div class="table-cell col-3"><div class="explanation">111,579 × 0.1425% = 159.0001<br>112,280 × 0.1425% = 159.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">160</span></div>
-          <div class="table-cell col-2"><div class="amount-range">112,281 - 112,982</div></div>
-          <div class="table-cell col-3"><div class="explanation">112,281 × 0.1425% = 160.0004<br>112,982 × 0.1425% = 160.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">161</span></div>
-          <div class="table-cell col-2"><div class="amount-range">112,983 - 113,684</div></div>
-          <div class="table-cell col-3"><div class="explanation">112,983 × 0.1425% = 161.0008<br>113,684 × 0.1425% = 161.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">162</span></div>
-          <div class="table-cell col-2"><div class="amount-range">113,685 - 114,385</div></div>
-          <div class="table-cell col-3"><div class="explanation">113,685 × 0.1425% = 162.0011<br>114,385 × 0.1425% = 162.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">163</span></div>
-          <div class="table-cell col-2"><div class="amount-range">114,386 - 115,087</div></div>
-          <div class="table-cell col-3"><div class="explanation">114,386 × 0.1425% = 163.0001<br>115,087 × 0.1425% = 163.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">164</span></div>
-          <div class="table-cell col-2"><div class="amount-range">115,088 - 115,789</div></div>
-          <div class="table-cell col-3"><div class="explanation">115,088 × 0.1425% = 164.0004<br>115,789 × 0.1425% = 164.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">165</span></div>
-          <div class="table-cell col-2"><div class="amount-range">115,790 - 116,491</div></div>
-          <div class="table-cell col-3"><div class="explanation">115,790 × 0.1425% = 165.0008<br>116,491 × 0.1425% = 165.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">166</span></div>
-          <div class="table-cell col-2"><div class="amount-range">116,492 - 117,192</div></div>
-          <div class="table-cell col-3"><div class="explanation">116,492 × 0.1425% = 166.0011<br>117,192 × 0.1425% = 166.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">167</span></div>
-          <div class="table-cell col-2"><div class="amount-range">117,193 - 117,894</div></div>
-          <div class="table-cell col-3"><div class="explanation">117,193 × 0.1425% = 167.0000<br>117,894 × 0.1425% = 167.9990</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">168</span></div>
-          <div class="table-cell col-2"><div class="amount-range">117,895 - 118,596</div></div>
-          <div class="table-cell col-3"><div class="explanation">117,895 × 0.1425% = 168.0004<br>118,596 × 0.1425% = 168.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">169</span></div>
-          <div class="table-cell col-2"><div class="amount-range">118,597 - 119,298</div></div>
-          <div class="table-cell col-3"><div class="explanation">118,597 × 0.1425% = 169.0007<br>119,298 × 0.1425% = 169.9997</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">170</span></div>
-          <div class="table-cell col-2"><div class="amount-range">119,299 - 119,999</div></div>
-          <div class="table-cell col-3"><div class="explanation">119,299 × 0.1425% = 170.0011<br>119,999 × 0.1425% = 170.9986</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">171</span></div>
-          <div class="table-cell col-2"><div class="amount-range">120,000 - 120,701</div></div>
-          <div class="table-cell col-3"><div class="explanation">120,000 × 0.1425% = 171.0000<br>120,701 × 0.1425% = 171.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">172</span></div>
-          <div class="table-cell col-2"><div class="amount-range">120,702 - 121,403</div></div>
-          <div class="table-cell col-3"><div class="explanation">120,702 × 0.1425% = 172.0003<br>121,403 × 0.1425% = 172.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">173</span></div>
-          <div class="table-cell col-2"><div class="amount-range">121,404 - 122,105</div></div>
-          <div class="table-cell col-3"><div class="explanation">121,404 × 0.1425% = 173.0007<br>122,105 × 0.1425% = 173.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">174</span></div>
-          <div class="table-cell col-2"><div class="amount-range">122,106 - 122,807</div></div>
-          <div class="table-cell col-3"><div class="explanation">122,106 × 0.1425% = 174.0010<br>122,807 × 0.1425% = 175.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">175</span></div>
-          <div class="table-cell col-2"><div class="amount-range">122,808 - 123,508</div></div>
-          <div class="table-cell col-3"><div class="explanation">122,808 × 0.1425% = 175.0014<br>123,508 × 0.1425% = 175.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">176</span></div>
-          <div class="table-cell col-2"><div class="amount-range">123,509 - 124,210</div></div>
-          <div class="table-cell col-3"><div class="explanation">123,509 × 0.1425% = 176.0003<br>124,210 × 0.1425% = 176.9993</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">177</span></div>
-          <div class="table-cell col-2"><div class="amount-range">124,211 - 124,912</div></div>
-          <div class="table-cell col-3"><div class="explanation">124,211 × 0.1425% = 177.0007<br>124,912 × 0.1425% = 177.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">178</span></div>
-          <div class="table-cell col-2"><div class="amount-range">124,913 - 125,614</div></div>
-          <div class="table-cell col-3"><div class="explanation">124,913 × 0.1425% = 178.0010<br>125,614 × 0.1425% = 179.0000</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">179</span></div>
-          <div class="table-cell col-2"><div class="amount-range">125,615 - 126,315</div></div>
-          <div class="table-cell col-3"><div class="explanation">125,615 × 0.1425% = 179.0014<br>126,315 × 0.1425% = 179.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">180</span></div>
-          <div class="table-cell col-2"><div class="amount-range">126,316 - 127,017</div></div>
-          <div class="table-cell col-3"><div class="explanation">126,316 × 0.1425% = 180.0003<br>127,017 × 0.1425% = 180.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">181</span></div>
-          <div class="table-cell col-2"><div class="amount-range">127,018 - 127,719</div></div>
-          <div class="table-cell col-3"><div class="explanation">127,018 × 0.1425% = 181.0007<br>127,719 × 0.1425% = 181.9996</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">182</span></div>
-          <div class="table-cell col-2"><div class="amount-range">127,720 - 128,421</div></div>
-          <div class="table-cell col-3"><div class="explanation">127,720 × 0.1425% = 182.0010<br>128,421 × 0.1425% = 182.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">183</span></div>
-          <div class="table-cell col-2"><div class="amount-range">128,422 - 129,122</div></div>
-          <div class="table-cell col-3"><div class="explanation">128,422 × 0.1425% = 183.0014<br>129,122 × 0.1425% = 183.9989</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">184</span></div>
-          <div class="table-cell col-2"><div class="amount-range">129,123 - 129,824</div></div>
-          <div class="table-cell col-3"><div class="explanation">129,123 × 0.1425% = 184.0003<br>129,824 × 0.1425% = 184.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">185</span></div>
-          <div class="table-cell col-2"><div class="amount-range">129,825 - 130,526</div></div>
-          <div class="table-cell col-3"><div class="explanation">129,825 × 0.1425% = 185.0006<br>130,526 × 0.1425% = 185.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">186</span></div>
-          <div class="table-cell col-2"><div class="amount-range">130,527 - 131,228</div></div>
-          <div class="table-cell col-3"><div class="explanation">130,527 × 0.1425% = 186.0010<br>131,228 × 0.1425% = 186.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">187</span></div>
-          <div class="table-cell col-2"><div class="amount-range">131,229 - 131,929</div></div>
-          <div class="table-cell col-3"><div class="explanation">131,229 × 0.1425% = 187.0013<br>131,929 × 0.1425% = 187.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">188</span></div>
-          <div class="table-cell col-2"><div class="amount-range">131,930 - 132,631</div></div>
-          <div class="table-cell col-3"><div class="explanation">131,930 × 0.1425% = 188.0002<br>132,631 × 0.1425% = 188.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">189</span></div>
-          <div class="table-cell col-2"><div class="amount-range">132,632 - 133,333</div></div>
-          <div class="table-cell col-3"><div class="explanation">132,632 × 0.1425% = 189.0006<br>133,333 × 0.1425% = 189.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">190</span></div>
-          <div class="table-cell col-2"><div class="amount-range">133,334 - 140,335</div></div>
-          <div class="table-cell col-3"><div class="explanation">133,334 × 0.1425% = 190.0010<br>134,035 × 0.1425% = 190.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">191</span></div>
-          <div class="table-cell col-2"><div class="amount-range">134,036 - 134,736</div></div>
-          <div class="table-cell col-3"><div class="explanation">134,036 × 0.1425% = 191.0013<br>134,736 × 0.1425% = 191.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">192</span></div>
-          <div class="table-cell col-2"><div class="amount-range">134,737 - 135,438</div></div>
-          <div class="table-cell col-3"><div class="explanation">134,737 × 0.1425% = 192.0002<br>135,438 × 0.1425% = 192.9992</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">193</span></div>
-          <div class="table-cell col-2"><div class="amount-range">135,439 - 136,140</div></div>
-          <div class="table-cell col-3"><div class="explanation">135,439 × 0.1425% = 193.0006<br>136,140 × 0.1425% = 193.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">194</span></div>
-          <div class="table-cell col-2"><div class="amount-range">136,141 - 136,842</div></div>
-          <div class="table-cell col-3"><div class="explanation">136,141 × 0.1425% = 194.0009<br>136,842 × 0.1425% = 194.9999</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">195</span></div>
-          <div class="table-cell col-2"><div class="amount-range">136,843 - 137,543</div></div>
-          <div class="table-cell col-3"><div class="explanation">136,843 × 0.1425% = 195.0013<br>137,543 × 0.1425% = 195.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">196</span></div>
-          <div class="table-cell col-2"><div class="amount-range">137,544 - 138,245</div></div>
-          <div class="table-cell col-3"><div class="explanation">137,544 × 0.1425% = 196.0002<br>138,245 × 0.1425% = 196.9991</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">197</span></div>
-          <div class="table-cell col-2"><div class="amount-range">138,246 - 138,947</div></div>
-          <div class="table-cell col-3"><div class="explanation">138,246 × 0.1425% = 197.0006<br>138,947 × 0.1425% = 197.9995</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">198</span></div>
-          <div class="table-cell col-2"><div class="amount-range">138,948 - 139,649</div></div>
-          <div class="table-cell col-3"><div class="explanation">138,948 × 0.1425% = 198.0009<br>139,649 × 0.1425% = 198.9998</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">199</span></div>
-          <div class="table-cell col-2"><div class="amount-range">139,650 - 140,350</div></div>
-          <div class="table-cell col-3"><div class="explanation">139,650 × 0.1425% = 199.0012<br>140,350 × 0.1425% = 199.9988</div></div>
-        </div>
-        <div class="table-row">
-          <div class="table-cell col-1"><span class="fee-badge">200</span></div>
-          <div class="table-cell col-2"><div class="amount-range">140,351 - 141,052</div></div>
-          <div class="table-cell col-3"><div class="explanation">140,351 × 0.1425% = 200.0002<br>141,052 × 0.1425% = 200.9991</div></div>
+          <div class="table-cell col-1">
+            <span class="fee-badge">1</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">702 - 1,403</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">702 × 0.1425% = 1.00035
+              <br>1,403 × 0.1425% = 1.999275</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">2</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">1,404 - 2,105</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">1,404 × 0.1425% = 2.0007
+              <br>2,105 × 0.1425% = 2.999625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">3</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">2,106 - 2,807</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">2,106 × 0.1425% = 3.00105
+              <br>2,807 × 0.1425% = 3.999975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">4</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">2,808 - 3,508</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">2,808 × 0.1425% = 4.0014
+              <br>3,508 × 0.1425% = 4.9989</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">5</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">3,509 - 4,210</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">3,509 × 0.1425% = 5.000325
+              <br>4,210 × 0.1425% = 5.99925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">6</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">4,211 - 4,912</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">4,211 × 0.1425% = 6.000675
+              <br>4,912 × 0.1425% = 6.9996</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">7</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">4,913 - 5,614</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">4,913 × 0.1425% = 7.001025
+              <br>5,614 × 0.1425% = 7.99995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">8</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">5,615 - 6,315</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">5,615 × 0.1425% = 8.001375
+              <br>6,315 × 0.1425% = 8.998875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">9</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">6,316 - 7,017</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">6,316 × 0.1425% = 9.0003
+              <br>7,017 × 0.1425% = 9.999225</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">10</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">7,018 - 7,719</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">7,018 × 0.1425% = 10.00065
+              <br>7,719 × 0.1425% = 10.999575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">11</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">7,720 - 8,421</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">7,720 × 0.1425% = 11.001
+              <br>8,421 × 0.1425% = 11.999925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">12</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">8,422 - 9,122</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">8,422 × 0.1425% = 12.00135
+              <br>9,122 × 0.1425% = 12.99885</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">13</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">9,123 - 9,824</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">9,123 × 0.1425% = 13.000275
+              <br>9,824 × 0.1425% = 13.9992</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">14</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">9,825 - 10,526</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">9,825 × 0.1425% = 14.000625
+              <br>10,526 × 0.1425% = 14.99955</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">15</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">10,527 - 11,228</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">10,527 × 0.1425% = 15.000975
+              <br>11,228 × 0.1425% = 15.9999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">16</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">11,229 - 11,929</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">11,229 × 0.1425% = 16.001325
+              <br>11,929 × 0.1425% = 16.998825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">17</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">11,930 - 12,631</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">11,930 × 0.1425% = 17.00025
+              <br>12,631 × 0.1425% = 17.999175</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">18</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">12,632 - 13,333</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">12,632 × 0.1425% = 18.0006
+              <br>13,333 × 0.1425% = 18.999525</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">19</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">13,334 - 14,035</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">13,334 × 0.1425% = 19.00095
+              <br>14,035 × 0.1425% = 19.999875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">20</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">14,036 - 14,736</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">14,036 × 0.1425% = 20.0013
+              <br>14,736 × 0.1425% = 20.9988</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">21</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">14,737 - 15,438</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">14,737 × 0.1425% = 21.000225
+              <br>15,438 × 0.1425% = 21.99915</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">22</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">15,439 - 16,140</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">15,439 × 0.1425% = 22.000575
+              <br>16,140 × 0.1425% = 22.9995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">23</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">16,141 - 16,842</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">16,141 × 0.1425% = 23.000925
+              <br>16,842 × 0.1425% = 23.99985</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">24</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">16,843 - 17,543</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">16,843 × 0.1425% = 24.001275
+              <br>17,543 × 0.1425% = 24.998775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">25</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">17,544 - 18,245</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">17,544 × 0.1425% = 25.0002
+              <br>18,245 × 0.1425% = 25.999125</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">26</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">18,246 - 18,947</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">18,246 × 0.1425% = 26.00055
+              <br>18,947 × 0.1425% = 26.999475</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">27</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">18,948 - 19,649</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">18,948 × 0.1425% = 27.0009
+              <br>19,649 × 0.1425% = 27.999825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">28</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">19,650 - 20,350</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">19,650 × 0.1425% = 28.00125
+              <br>20,350 × 0.1425% = 28.99875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">29</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">20,351 - 21,052</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">20,351 × 0.1425% = 29.000175
+              <br>21,052 × 0.1425% = 29.9991</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">30</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">21,053 - 21,754</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">21,053 × 0.1425% = 30.000525
+              <br>21,754 × 0.1425% = 30.99945</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">31</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">21,755 - 22,456</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">21,755 × 0.1425% = 31.000875
+              <br>22,456 × 0.1425% = 31.9998</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">32</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">22,457 - 23,157</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">22,457 × 0.1425% = 32.001225
+              <br>23,157 × 0.1425% = 32.998725</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">33</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">23,158 - 23,859</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">23,158 × 0.1425% = 33.00015
+              <br>23,859 × 0.1425% = 33.999075</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">34</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">23,860 - 24,561</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">23,860 × 0.1425% = 34.0005
+              <br>24,561 × 0.1425% = 34.999425</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">35</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">24,562 - 25,263</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">24,562 × 0.1425% = 35.00085
+              <br>25,263 × 0.1425% = 35.999775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">36</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">25,264 - 25,964</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">25,264 × 0.1425% = 36.0012
+              <br>25,964 × 0.1425% = 36.9987</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">37</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">25,965 - 26,666</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">25,965 × 0.1425% = 37.000125
+              <br>26,666 × 0.1425% = 37.99905</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">38</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">26,667 - 27,368</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">26,667 × 0.1425% = 38.000475
+              <br>27,368 × 0.1425% = 38.9994</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">39</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">27,369 - 28,070</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">27,369 × 0.1425% = 39.000825
+              <br>28,070 × 0.1425% = 39.99975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">40</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">28,071 - 28,771</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">28,071 × 0.1425% = 40.001175
+              <br>28,771 × 0.1425% = 40.998675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">41</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">28,772 - 29,473</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">28,772 × 0.1425% = 41.0001
+              <br>29,473 × 0.1425% = 41.999025</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">42</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">29,474 - 30,175</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">29,474 × 0.1425% = 42.00045
+              <br>30,175 × 0.1425% = 42.999375</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">43</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">30,176 - 30,877</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">30,176 × 0.1425% = 43.0008
+              <br>30,877 × 0.1425% = 43.999725</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">44</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">30,878 - 31,578</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">30,878 × 0.1425% = 44.00115
+              <br>31,578 × 0.1425% = 44.99865</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">45</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">31,579 - 32,280</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">31,579 × 0.1425% = 45.000075
+              <br>32,280 × 0.1425% = 45.999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">46</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">32,281 - 32,982</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">32,281 × 0.1425% = 46.000425
+              <br>32,982 × 0.1425% = 46.99935</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">47</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">32,983 - 33,684</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">32,983 × 0.1425% = 47.000775
+              <br>33,684 × 0.1425% = 47.9997</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">48</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">33,685 - 34,385</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">33,685 × 0.1425% = 48.001125
+              <br>34,385 × 0.1425% = 48.998625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">49</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">34,386 - 35,087</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">34,386 × 0.1425% = 49.00005
+              <br>35,087 × 0.1425% = 49.998975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">50</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">35,088 - 35,789</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">35,088 × 0.1425% = 50.0004
+              <br>35,789 × 0.1425% = 50.999325</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">51</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">35,790 - 36,491</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">35,790 × 0.1425% = 51.00075
+              <br>36,491 × 0.1425% = 51.999675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">52</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">36,492 - 37,192</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">36,492 × 0.1425% = 52.0011
+              <br>37,192 × 0.1425% = 52.9986</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">53</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">37,193 - 37,894</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">37,193 × 0.1425% = 53.000025
+              <br>37,894 × 0.1425% = 53.99895</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">54</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">37,895 - 38,596</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">37,895 × 0.1425% = 54.000375
+              <br>38,596 × 0.1425% = 54.9993</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">55</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">38,597 - 39,298</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">38,597 × 0.1425% = 55.000725
+              <br>39,298 × 0.1425% = 55.99965</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">56</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">39,299 - 39,999</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">39,299 × 0.1425% = 56.001075
+              <br>39,999 × 0.1425% = 56.998575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">57</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">40,000 - 40,701</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">40,000 × 0.1425% = 57.0000
+              <br>40,701 × 0.1425% = 57.998925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">58</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">40,702 - 41,403</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">40,702 × 0.1425% = 58.00035
+              <br>41,403 × 0.1425% = 58.999275</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">59</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">41,404 - 42,105</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">41,404 × 0.1425% = 59.0007
+              <br>42,105 × 0.1425% = 59.999625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">60</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">42,106 - 42,807</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">42,106 × 0.1425% = 60.00105
+              <br>42,807 × 0.1425% = 60.999975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">61</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">42,808 - 43,508</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">42,808 × 0.1425% = 61.0014
+              <br>43,508 × 0.1425% = 61.9989</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">62</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">43,509 - 44,210</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">43,509 × 0.1425% = 62.000325
+              <br>44,210 × 0.1425% = 62.99925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">63</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">44,211 - 44,912</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">44,211 × 0.1425% = 63.000675
+              <br>44,912 × 0.1425% = 63.9996</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">64</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">44,913 - 45,614</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">44,913 × 0.1425% = 64.001025
+              <br>45,614 × 0.1425% = 64.99995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">65</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">45,615 - 46,315</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">45,615 × 0.1425% = 65.001375
+              <br>46,315 × 0.1425% = 65.998875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">66</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">46,316 - 47,017</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">46,316 × 0.1425% = 66.0003
+              <br>47,017 × 0.1425% = 66.999225</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">67</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">47,018 - 47,719</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">47,018 × 0.1425% = 67.00065
+              <br>47,719 × 0.1425% = 67.999575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">68</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">47,720 - 48,421</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">47,720 × 0.1425% = 68.001
+              <br>48,421 × 0.1425% = 68.999925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">69</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">48,422 - 49,122</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">48,422 × 0.1425% = 69.00135
+              <br>49,122 × 0.1425% = 69.99885</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">70</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">49,123 - 49,824</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">49,123 × 0.1425% = 70.000275
+              <br>49,824 × 0.1425% = 70.9992</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">71</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">49,825 - 50,526</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">49,825 × 0.1425% = 71.000625
+              <br>50,526 × 0.1425% = 71.99955</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">72</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">50,527 - 51,228</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">50,527 × 0.1425% = 72.000975
+              <br>51,228 × 0.1425% = 72.9999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">73</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">51,229 - 51,929</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">51,229 × 0.1425% = 73.001325
+              <br>51,929 × 0.1425% = 73.998825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">74</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">51,930 - 52,631</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">51,930 × 0.1425% = 74.00025
+              <br>52,631 × 0.1425% = 74.999175</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">75</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">52,632 - 53,333</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">52,632 × 0.1425% = 75.0006
+              <br>53,333 × 0.1425% = 75.999525</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">76</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">53,334 - 54,035</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">53,334 × 0.1425% = 76.00095
+              <br>54,035 × 0.1425% = 76.999875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">77</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">54,036 - 54,736</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">54,036 × 0.1425% = 77.0013
+              <br>54,736 × 0.1425% = 77.9988</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">78</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">54,737 - 55,438</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">54,737 × 0.1425% = 78.000225
+              <br>55,438 × 0.1425% = 78.99915</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">79</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">55,439 - 56,140</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">55,439 × 0.1425% = 79.000575
+              <br>56,140 × 0.1425% = 79.9995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">80</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">56,141 - 56,842</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">56,141 × 0.1425% = 80.000925
+              <br>56,842 × 0.1425% = 80.99985</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">81</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">56,843 - 57,543</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">56,843 × 0.1425% = 81.001275
+              <br>57,543 × 0.1425% = 81.998775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">82</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">57,544 - 58,245</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">57,544 × 0.1425% = 82.0002
+              <br>58,245 × 0.1425% = 82.999125</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">83</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">58,246 - 58,947</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">58,246 × 0.1425% = 83.00055
+              <br>58,947 × 0.1425% = 83.999475</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">84</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">58,948 - 59,649</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">58,948 × 0.1425% = 84.0009
+              <br>59,649 × 0.1425% = 84.999825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">85</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">59,650 - 60,350</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">59,650 × 0.1425% = 85.00125
+              <br>60,350 × 0.1425% = 85.99875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">86</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">60,351 - 61,052</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">60,351 × 0.1425% = 86.000175
+              <br>61,052 × 0.1425% = 86.9991</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">87</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">61,053 - 61,754</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">61,053 × 0.1425% = 87.000525
+              <br>61,754 × 0.1425% = 87.99945</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">88</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">61,755 - 62,456</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">61,755 × 0.1425% = 88.000875
+              <br>62,456 × 0.1425% = 88.9998</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">89</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">62,457 - 63,157</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">62,457 × 0.1425% = 89.001225
+              <br>63,157 × 0.1425% = 89.998725</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">90</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">63,158 - 63,859</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">63,158 × 0.1425% = 90.00015
+              <br>63,859 × 0.1425% = 90.999075</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">91</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">63,860 - 64,561</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">63,860 × 0.1425% = 91.0005
+              <br>64,561 × 0.1425% = 91.999425</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">92</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">64,562 - 65,263</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">64,562 × 0.1425% = 92.00085
+              <br>65,263 × 0.1425% = 92.999775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">93</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">65,264 - 65,964</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">65,264 × 0.1425% = 93.0012
+              <br>65,964 × 0.1425% = 93.9987</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">94</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">65,965 - 66,666</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">65,965 × 0.1425% = 94.000125
+              <br>66,666 × 0.1425% = 94.99905</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">95</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">66,667 - 67,368</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">66,667 × 0.1425% = 95.000475
+              <br>67,368 × 0.1425% = 95.9994</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">96</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">67,369 - 68,070</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">67,369 × 0.1425% = 96.000825
+              <br>68,070 × 0.1425% = 96.99975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">97</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">68,071 - 68,771</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">68,071 × 0.1425% = 97.001175
+              <br>68,771 × 0.1425% = 97.998675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">98</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">68,772 - 69,473</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">68,772 × 0.1425% = 98.0001
+              <br>69,473 × 0.1425% = 98.999025</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">99</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">69,474 - 70,175</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">69,474 × 0.1425% = 99.00045
+              <br>70,175 × 0.1425% = 99.999375</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">100</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">70,176 - 70,877</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">70,176 × 0.1425% = 100.0008
+              <br>70,877 × 0.1425% = 100.999725</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">101</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">70,878 - 71,578</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">70,878 × 0.1425% = 101.00115
+              <br>71,578 × 0.1425% = 101.99865</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">102</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">71,579 - 72,280</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">71,579 × 0.1425% = 102.000165
+              <br>72,280 × 0.1425% = 102.999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">103</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">72,281 - 72,982</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">72,281 × 0.1425% = 103.000425
+              <br>72,982 × 0.1425% = 103.99935</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">104</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">72,983 - 73,684</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">72,983 × 0.1425% = 104.000775
+              <br>73,684 × 0.1425% = 104.9997</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">105</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">73,685 - 74,385</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">73,685 × 0.1425% = 105.001125
+              <br>74,385 × 0.1425% = 105.998625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">106</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">74,386 - 75,087</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">74,386 × 0.1425% = 106.00005
+              <br>75,087 × 0.1425% = 106.998975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">107</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">75,088 - 75,789</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">75,088 × 0.1425% = 107.0004
+              <br>75,789 × 0.1425% = 107.999325</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">108</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">75,790 - 76,491</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">75,790 × 0.1425% = 108.00075
+              <br>76,491 × 0.1425% = 108.999675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">109</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">76,492 - 77,192</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">76,492 × 0.1425% = 109.0011
+              <br>77,192 × 0.1425% = 109.9986</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">110</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">77,193 - 77,894</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">77,193 × 0.1425% = 110.000025
+              <br>77,894 × 0.1425% = 110.99895</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">111</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">77,895 - 78,596</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">77,895 × 0.1425% = 111.000375
+              <br>78,596 × 0.1425% = 111.9993</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">112</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">78,597 - 79,298</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">78,597 × 0.1425% = 112.000725
+              <br>79,298 × 0.1425% = 112.99965</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">113</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">79,299 - 79,999</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">79,299 × 0.1425% = 113.001075
+              <br>79,999 × 0.1425% = 113.998575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">114</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">80,000 - 80,701</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">80,000 × 0.1425% = 114.0000
+              <br>80,701 × 0.1425% = 114.998925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">115</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">80,702 - 81,403</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">80,702 × 0.1425% = 115.00035
+              <br>81,403 × 0.1425% = 115.999275</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">116</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">81,404 - 82,105</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">81,404 × 0.1425% = 116.0007
+              <br>82,105 × 0.1425% = 116.999625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">117</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">82,106 - 82,807</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">82,106 × 0.1425% = 117.00105
+              <br>82,807 × 0.1425% = 118.0000</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">118</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">82,808 - 83,508</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">82,808 × 0.1425% = 118.0014
+              <br>83,508 × 0.1425% = 118.9989</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">119</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">83,509 - 84,210</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">83,509 × 0.1425% = 119.000325
+              <br>84,210 × 0.1425% = 119.99925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">120</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">84,211 - 84,912</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">84,211 × 0.1425% = 120.000675
+              <br>84,912 × 0.1425% = 120.9996</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">121</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">84,913 - 85,614</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">84,913 × 0.1425% = 121.001025
+              <br>85,614 × 0.1425% = 121.99995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">122</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">85,615 - 86,315</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">85,615 × 0.1425% = 122.001375
+              <br>86,315 × 0.1425% = 122.998875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">123</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">86,316 - 87,017</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">86,316 × 0.1425% = 123.0003
+              <br>87,017 × 0.1425% = 123.999225</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">124</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">87,018 - 87,719</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">87,018 × 0.1425% = 124.00065
+              <br>87,719 × 0.1425% = 124.999575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">125</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">87,720 - 88,421</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">87,720 × 0.1425% = 125.001
+              <br>88,421 × 0.1425% = 125.999925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">126</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">88,422 - 89,122</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">88,422 × 0.1425% = 126.00135
+              <br>89,122 × 0.1425% = 126.99885</div>
+          </div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell col-1"><span class="fee-badge">127</span></div>
+            <div class="table-cell col-2"><div class="amount-range">89,123 - 89,824</div></div>
+            <div class="table-cell col-3"><div class="explanation">89,123 × 0.1425% = 127.000275<br>89,824 × 0.1425% = 127.9992</div></div>
+          </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">128</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">89,825 - 90,526</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">89,825 × 0.1425% = 128.000625
+              <br>90,526 × 0.1425% = 128.99955</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">129</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">90,527 - 91,228</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">90,527 × 0.1425% = 129.001025
+              <br>91,228 × 0.1425% = 129.9999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">130</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">91,229 - 91,929</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">91,229 × 0.1425% = 130.001325
+              <br>91,929 × 0.1425% = 130.998825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">131</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">91,930 - 92,631</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">91,930 × 0.1425% = 131.00025
+              <br>92,631 × 0.1425% = 131.999175</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">132</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">92,632 - 93,333</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">92,632 × 0.1425% = 132.0006
+              <br>93,333 × 0.1425% = 132.999525</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">133</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">93,334 - 94,035</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">93,334 × 0.1425% = 133.00095
+              <br>94,035 × 0.1425% = 133.999875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">134</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">94,036 - 94,736</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">94,036 × 0.1425% = 134.0013
+              <br>94,736 × 0.1425% = 134.9988</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">135</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">94,737 - 95,438</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">94,737 × 0.1425% = 135.000225
+              <br>95,438 × 0.1425% = 135.99915</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">136</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">95,439 - 96,140</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">95,439 × 0.1425% = 136.000575
+              <br>96,140 × 0.1425% = 136.9995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">137</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">96,141 - 96,842</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">96,141 × 0.1425% = 137.000925
+              <br>96,842 × 0.1425% = 137.99985</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">138</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">96,843 - 97,543</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">96,843 × 0.1425% = 138.001275
+              <br>97,543 × 0.1425% = 138.998775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">139</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">97,544 - 98,245</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">97,544 × 0.1425% = 139.0002
+              <br>98,245 × 0.1425% = 139.999125</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">140</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">98,246 - 98,947</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">98,246 × 0.1425% = 140.00055
+              <br>98,947 × 0.1425% = 140.999475</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">141</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">98,948 - 99,649</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">98,948 × 0.1425% = 141.0009
+              <br>99,649 × 0.1425% = 141.999825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">142</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">99,650 - 100,350</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">99,650 × 0.1425% = 142.00125
+              <br>100,350 × 0.1425% = 142.99875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">143</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">100,351 - 101,052</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">100,351 × 0.1425% = 143.000175
+              <br>101,052 × 0.1425% = 143.9991</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">144</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">101,053 - 101,754</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">101,053 × 0.1425% = 144.000525
+              <br>101,754 × 0.1425% = 144.99945</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">145</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">101,755 - 102,456</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">101,755 × 0.1425% = 145.000875
+              <br>102,456 × 0.1425% = 145.9998</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">146</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">102,457 - 103,157</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">102,457 × 0.1425% = 146.001225
+              <br>103,157 × 0.1425% = 146.998725</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">147</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">103,158 - 103,859</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">103,158 × 0.1425% = 147.00015
+              <br>103,859 × 0.1425% = 147.999075</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">148</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">103,860 - 104,561</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">103,860 × 0.1425% = 148.0005
+              <br>104,561 × 0.1425% = 148.999425</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">149</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">104,562 - 105,263</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">104,562 × 0.1425% = 149.00085
+              <br>105,263 × 0.1425% = 149.999775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">150</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">105,264 - 105,964</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">105,264 × 0.1425% = 150.0012
+              <br>105,964 × 0.1425% = 150.9987</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">151</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">105,965 - 106,666</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">105,965 × 0.1425% = 151.000125
+              <br>106,666 × 0.1425% = 151.99905</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">152</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">106,667 - 107,368</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">106,667 × 0.1425% = 152.000475
+              <br>107,368 × 0.1425% = 152.9994</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">153</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">107,369 - 108,070</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">107,369 × 0.1425% = 153.000825
+              <br>108,070 × 0.1425% = 153.99975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">154</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">108,071 - 108,771</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">108,071 × 0.1425% = 154.001175
+              <br>108,771 × 0.1425% = 154.998675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">155</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">108,772 - 109,473</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">108,772 × 0.1425% = 155.0001
+              <br>109,473 × 0.1425% = 155.999025</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">156</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">109,474 - 110,175</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">109,474 × 0.1425% = 156.00045
+              <br>110,175 × 0.1425% = 156.999375</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">157</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">110,176 - 110,877</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">110,176 × 0.1425% = 157.000775
+              <br>110,877 × 0.1425% = 157.9997</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">158</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">110,878 - 111,578</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">110,878 × 0.1425% = 158.001125
+              <br>111,578 × 0.1425% = 158.998625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">159</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">111,579 - 112,280</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">111,579 × 0.1425% = 159.000075
+              <br>112,280 × 0.1425% = 159.999</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">160</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">112,281 - 112,982</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">112,281 × 0.1425% = 160.000425
+              <br>112,982 × 0.1425% = 160.99935</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">161</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">112,983 - 113,684</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">112,983 × 0.1425% = 161.000775
+              <br>113,684 × 0.1425% = 161.9997</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">162</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">113,685 - 114,385</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">113,685 × 0.1425% = 162.001125
+              <br>114,385 × 0.1425% = 162.998625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">163</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">114,386 - 115,087</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">114,386 × 0.1425% = 163.00005
+              <br>115,087 × 0.1425% = 163.998975</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">164</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">115,088 - 115,789</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">115,088 × 0.1425% = 164.0004
+              <br>115,789 × 0.1425% = 164.999325</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">165</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">115,790 - 116,491</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">115,790 × 0.1425% = 165.00075
+              <br>116,491 × 0.1425% = 165.999675</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">166</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">116,492 - 117,192</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">116,492 × 0.1425% = 166.0011
+              <br>117,192 × 0.1425% = 166.9986</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">167</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">117,193 - 117,894</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">117,193 × 0.1425% = 167.000025
+              <br>117,894 × 0.1425% = 167.99895</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">168</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">117,895 - 118,596</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">117,895 × 0.1425% = 168.000375
+              <br>118,596 × 0.1425% = 168.9993</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">169</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">118,597 - 119,298</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">118,597 × 0.1425% = 169.000725
+              <br>119,298 × 0.1425% = 169.99965</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">170</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">119,299 - 119,999</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">119,299 × 0.1425% = 170.0011
+              <br>119,999 × 0.1425% = 170.998575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">171</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">120,000 - 120,701</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">120,000 × 0.1425% = 171.0000
+              <br>120,701 × 0.1425% = 171.998925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">172</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">120,702 - 121,403</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">120,702 × 0.1425% = 172.00035
+              <br>121,403 × 0.1425% = 172.999275</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">173</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">121,404 - 122,105</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">121,404 × 0.1425% = 172.999625
+              <br>122,105 × 0.1425% = 173.999625</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">174</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">122,106 - 122,807</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">122,106 × 0.1425% = 174.00105
+              <br>122,807 × 0.1425% = 175.0000</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">175</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">122,808 - 123,508</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">122,808 × 0.1425% = 175.0014
+              <br>123,508 × 0.1425% = 175.9989</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">176</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">123,509 - 124,210</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">123,509 × 0.1425% = 176.000325
+              <br>124,210 × 0.1425% = 176.99925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">177</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">124,211 - 124,912</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">124,211 × 0.1425% = 177.000675
+              <br>124,912 × 0.1425% = 177.9996</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">178</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">124,913 - 125,614</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">124,913 × 0.1425% = 178.001025
+              <br>125,614 × 0.1425% = 179.0000</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">179</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">125,615 - 126,315</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">125,615 × 0.1425% = 179.001375
+              <br>126,315 × 0.1425% = 179.998875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">180</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">126,316 - 127,017</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">126,316 × 0.1425% = 180.0003
+              <br>127,017 × 0.1425% = 180.999225</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">181</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">127,018 - 127,719</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">127,018 × 0.1425% = 181.00065
+              <br>127,719 × 0.1425% = 181.999575</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">182</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">127,720 - 128,421</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">127,720 × 0.1425% = 182.001
+              <br>128,421 × 0.1425% = 182.999925</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">183</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">128,422 - 129,122</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">128,422 × 0.1425% = 183.00135
+              <br>129,122 × 0.1425% = 183.99885</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">184</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">129,123 - 129,824</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">129,123 × 0.1425% = 184.000275
+              <br>129,824 × 0.1425% = 184.9992</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">185</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">129,825 - 130,526</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">129,825 × 0.1425% = 185.000625
+              <br>130,526 × 0.1425% = 185.99955</div>
+          </div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell col-1"><span class="fee-badge">186</span></div>
+            <div class="table-cell col-2"><div class="amount-range">130,527 - 131,228</div></div>
+            <div class="table-cell col-3"><div class="explanation">130,527 × 0.1425% = 186.001025<br>131,228 × 0.1425% = 186.9999</div></div>
+          </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">187</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">131,229 - 131,929</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">131,229 × 0.1425% = 187.001325
+              <br>131,929 × 0.1425% = 187.998825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">188</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">131,930 - 132,631</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">131,930 × 0.1425% = 188.00025
+              <br>132,631 × 0.1425% = 188.999175</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">189</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">132,632 - 133,333</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">132,632 × 0.1425% = 189.0006
+              <br>133,333 × 0.1425% = 189.999525</div>
+          </div>
+        </div>
+        <div class="table-row">
+            <div class="table-cell col-1"><span class="fee-badge">190</span></div>
+            <div class="table-cell col-2"><div class="amount-range">133,334 - 140,035</div></div>
+            <div class="table-cell col-3"><div class="explanation">133,334 × 0.1425% = 190.00095<br>140,035 × 0.1425% = 199.549875</div></div>
+          </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">191</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">134,036 - 134,736</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">134,036 × 0.1425% = 191.0013
+              <br>134,736 × 0.1425% = 191.9988</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">192</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">134,737 - 135,438</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">134,737 × 0.1425% = 192.000225
+              <br>135,438 × 0.1425% = 192.99915</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">193</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">135,439 - 136,140</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">135,439 × 0.1425% = 193.000575
+              <br>136,140 × 0.1425% = 193.9995</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">194</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">136,141 - 136,842</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">136,141 × 0.1425% = 194.000925
+              <br>136,842 × 0.1425% = 194.99985</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">195</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">136,843 - 137,543</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">136,843 × 0.1425% = 195.001275
+              <br>137,543 × 0.1425% = 195.998775</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">196</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">137,544 - 138,245</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">137,544 × 0.1425% = 196.0002
+              <br>138,245 × 0.1425% = 196.999125</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">197</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">138,246 - 138,947</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">138,246 × 0.1425% = 197.00055
+              <br>138,947 × 0.1425% = 197.999475</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">198</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">138,948 - 139,649</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">138,948 × 0.1425% = 198.0009
+              <br>139,649 × 0.1425% = 198.999825</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">199</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">139,650 - 140,350</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">139,650 × 0.1425% = 199.00125
+              <br>140,350 × 0.1425% = 199.99875</div>
+          </div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell col-1">
+            <span class="fee-badge">200</span>
+          </div>
+          <div class="table-cell col-2">
+            <div class="amount-range">140,351 - 141,052</div>
+          </div>
+          <div class="table-cell col-3">
+            <div class="explanation">140,351 × 0.1425% = 200.000175
+              <br>141,052 × 0.1425% = 200.9991</div>
+          </div>
         </div>
       </div>
     </div>
