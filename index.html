@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>手續費區間表</title>
   <meta name="format-detection" content="telephone=no">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@
       color: var(--text-main);
       margin: 0;
       line-height: 1.5;
-      padding-bottom: 200px;
+      padding-top: 104px; /* 給最上方固定的兩個列留出空間 (44px + 60px) */
     }
 
     .container {
@@ -45,73 +45,24 @@
       margin: 0 auto;
     }
 
-    /* 使用 Flexbox 打造的仿表格卡片 */
-
-    .table-card {
-      background-color: var(--card-bg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      margin-top: 44px;
-    }
-
-    /* 表格中的「列」結構 */
-
-    .table-row {
-      display: flex;
-      width: 100%;
-      /* border-bottom: 1px solid var(--border-color); */
-      align-items: middle;
-      transition: background-color 0.2s ease;
-    }
-
-    .table-row:last-child {
-      border-bottom: none;
-    }
-
-    /* 斑馬紋交替背景色 */
-
-    .table-body .table-row:nth-child(even) {
-      background-color: var(--primary-light);
-    }
-
-    /* 欄位通用樣式 */
-
-    .table-cell {
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    /* 分配與原本 table 一致的寬度比例 */
-
-    .col-1 {
-      width: 15%;
-      justify-content: center;
-    }
-
-    .col-2 {
-      width: 40%;
-    }
-
-    .col-3 {
-      width: 45%;
-    }
-
-    /* 終極修正：直接使用 fixed 固定在畫面最上方，100% 免疫任何滾動失效 */
-
-    .table-header {
-      display: flex;
+    /* 將標題與輸入框包裹在同一個 fixed 容器中 */
+    .top-sticky-container {
       position: fixed;
       top: 0;
       left: 50%;
       transform: translateX(-50%);
-      /* 配合 left: 50% 讓它在任何螢幕寬度下都完美置中 */
       width: 100%;
       max-width: 700px;
-      /* 寬度與卡片容器對齊 */
+      z-index: 1000;
+      background-color: var(--bg-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 置頂標題列 */
+    .table-header {
+      display: flex;
+      width: 100%;
       height: 44px;
-      z-index: 100;
       background-color: var(--primary-color);
       color: #ffffff;
       font-weight: 600;
@@ -119,12 +70,122 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    /* 當輸入金額命中區間時的高亮邊框框樣式 */
+    /* 置頂輸入控制列 */
+    .top-control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      padding: 6px 16px;
+      height: 60px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .search-capsule {
+      display: flex;
+      align-items: center;
+      background-color: var(--bg-color);
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      padding: 2px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .search-capsule input[type="number"] {
+      border: none;
+      outline: none;
+      padding: 0 16px;
+      height: 44px;
+      flex: 1;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px 0 0 50px;
+      background: transparent;
+      width: 100%;
+    }
+
+    /* 隱藏輸入框自帶的微調按鈕 */
+    .search-capsule input[type="number"]::-webkit-outer-spin-button,
+    .search-capsule input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .search-capsule input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .search-capsule .btn-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    .search-capsule button {
+      border: none;
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      font-weight: bold;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+    }
+
+    .search-capsule button:hover {
+      background-color: #dbeafe;
+    }
+
+    .search-capsule button.btn-minus {
+      border-radius: 0;
+    }
+
+    .search-capsule button.btn-plus {
+      border-radius: 0 50px 50px 0;
+    }
+
+    .search-capsule button,
+    .search-capsule input[type="number"] {
+      touch-action: manipulation;
+    }
+
+    /* 仿表格卡片 */
+    .table-card {
+      background-color: var(--card-bg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .table-row {
+      display: flex;
+      width: 100%;
+      align-items: middle;
+      transition: background-color 0.2s ease;
+      /* 關鍵設定：讓滾動時能剛好停在頂部固定列的下方，不會被標題遮住 */
+      scroll-margin-top: 104px; 
+    }
+
+    .table-body .table-row:nth-child(even) {
+      background-color: var(--primary-light);
+    }
+
+    .table-cell {
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .col-1 { width: 15%; justify-content: center; }
+    .col-2 { width: 40%; }
+    .col-3 { width: 45%; }
 
     .table-row.highlighted {
       background-color: var(--highlight-color) !important;
       position: relative;
-      /* outline: 2px solid var(--highlight-border); */
       z-index: 5;
     }
 
@@ -149,100 +210,9 @@
       line-height: 1.3;
     }
 
-    /* 右下角浮動大膠囊控制列 */
-
-    .floating-capsule {
-      position: fixed;
-      bottom: calc(1.5rem + env(safe-area-inset-bottom));
-      right: 1.5rem;
-      display: flex;
-      align-items: center;
-      background-color: #ffffff;
-      border-radius: 50px;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border-color);
-      padding: 4px;
-      z-index: 1000;
-    }
-
-    /* 放大輸入框 */
-
-    .floating-capsule input[type="number"] {
-      border: none;
-      outline: none;
-      padding: 0 16px;
-      height: 52px;
-      width: 140px;
-      font-size: 1.15rem;
-      font-weight: 600;
-      border-radius: 50px 0 0 50px;
-      background: transparent;
-    }
-
-    /* 隱藏輸入框自帶的微調按鈕 */
-
-    .floating-capsule input[type="number"]::-webkit-outer-spin-button,
-    .floating-capsule input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    .floating-capsule input[type="number"] {
-      -moz-appearance: textfield;
-    }
-
-    .floating-capsule .btn-group {
-      display: flex;
-      gap: 2px;
-    }
-
-    /* 放大按鈕與點擊熱區 */
-
-    .floating-capsule button {
-      border: none;
-      background-color: var(--primary-light);
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      font-weight: bold;
-      width: 52px;
-      height: 52px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.2s;
-    }
-
-    .floating-capsule button:hover {
-      background-color: #dbeafe;
-    }
-
-    .floating-capsule button.btn-minus {
-      border-radius: 0;
-    }
-
-    .floating-capsule button.btn-plus {
-      border-radius: 0 50px 50px 0;
-    }
-
-    /* 防止雙擊放大 */
-
-    .floating-capsule button,
-    .floating-capsule input[type="number"] {
-      touch-action: manipulation;
-    }
-
-    /* RWD 手機版微調 */
-
     @media (max-width: 480px) {
       .table-cell {
         padding: 0.6rem 0.5rem;
-      }
-
-      .floating-capsule {
-        bottom: calc(1rem + env(safe-area-inset-bottom));
-        right: 1rem;
-        transition: bottom 0.1s ease-out;
       }
     }
   </style>
@@ -250,15 +220,26 @@
 
 <body>
   <div class="container">
-    <!-- 標題列：獨立抽出至最外層以便 fixed 定位，寬度自動完美適應 -->
-    <div class="table-header">
-      <div class="table-cell col-1">手續費</div>
-      <div class="table-cell col-2">區間</div>
-      <div class="table-cell col-3">備註</div>
+    <!-- 置頂容器：包含標題列與輸入控制列 -->
+    <div class="top-sticky-container">
+            <div class="top-control-bar">
+        <div class="search-capsule">
+          <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
+          <div class="btn-group">
+            <button class="btn-minus" id="minusBtn">−</button>
+            <button class="btn-plus" id="plusBtn">＋</button>
+          </div>
+        </div>
+      </div>
+      <div class="table-header">
+        <div class="table-cell col-1">手續費</div>
+        <div class="table-cell col-2">區間</div>
+        <div class="table-cell col-3">備註</div>
+      </div>
+
     </div>
 
     <div class="table-card">
-      <!-- 表身 -->
       <div class="table-body" id="feeTableBody">
         <div class="table-row">
           <div class="table-cell col-1">
@@ -2864,15 +2845,6 @@
     </div>
   </div>
 
-  <!-- 右下角浮動大膠囊控制列 -->
-  <div class="floating-capsule">
-    <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
-    <div class="btn-group">
-      <button class="btn-minus" id="minusBtn">−</button>
-      <button class="btn-plus" id="plusBtn">＋</button>
-    </div>
-  </div>
-
   <script>
     const amountInput = document.getElementById('amountInput');
     const minusBtn = document.getElementById('minusBtn');
@@ -2903,7 +2875,7 @@
 
       if (isNaN(value)) return;
 
-      // 金額超過 141,052 時，順暢捲動到最底部
+      // 金額超過最大區間時，順暢捲動到最底部
       if (value > 141052) {
         window.scrollTo({
           top: document.documentElement.scrollHeight,
@@ -2918,23 +2890,16 @@
       if (match) {
         match.row.classList.add('highlighted');
 
-        // 當置頂標題列固定時，改用 center 置中對齊，能最完美避開被頂端固定列或底部膠囊遮擋的問題
+        // 改用 'start' 對齊，配合 CSS 的 scroll-margin-top，選中的項目會完美的頂在控制列下方
         match.row.scrollIntoView({
           behavior: 'smooth',
-          block: 'center'
+          block: 'start'
         });
       }
     }
 
     // 監聽事件
     amountInput.addEventListener('input', checkRange);
-
-    // 當輸入框聚焦時，等待手機鍵盤彈起後重新修正滾動位置
-    amountInput.addEventListener('focus', () => {
-      setTimeout(() => {
-        checkRange();
-      }, 300);
-    });
 
     minusBtn.addEventListener('click', () => {
       let currentVal = parseInt(amountInput.value, 10) || 0;
@@ -2949,20 +2914,6 @@
       amountInput.value = currentVal + 1;
       checkRange();
     });
-
-    // 修正版的鍵盤避讓功能：直接緊貼鍵盤上方
-    if (window.visualViewport) {
-      const capsule = document.querySelector('.floating-capsule');
-      window.visualViewport.addEventListener('resize', () => {
-        const offsetBottom = window.innerHeight - window.visualViewport.height;
-        if (offsetBottom > 0) {
-          // 移除原本加上的 1rem 或 safe-area，直接對齊鍵盤頂端
-          capsule.style.bottom = `${offsetBottom}px`;
-        } else {
-          capsule.style.bottom = '';
-        }
-      });
-    }
   </script>
 </body>
 
