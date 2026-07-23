@@ -2903,7 +2903,7 @@
       }
     });
 
-    // 核心邏輯：偵測區間並滾動
+    // 核心邏輯：偵測區間並精準滾動（徹底解決 iOS 鍵盤推走置頂列的 Bug）
     function checkRange() {
       const value = parseInt(amountInput.value, 10);
 
@@ -2927,9 +2927,13 @@
       if (match) {
         match.row.classList.add('highlighted');
 
-        match.row.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        // 【終極修正】不再使用 scrollIntoView()，改用純算高度的 window.scrollTo
+        // 計算該資料列距離網頁頂部的絕對距離，並扣除頂部固定面板的高度 (112px)
+        const targetTop = match.row.getBoundingClientRect().top + window.pageYOffset - 112;
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
         });
       }
     }
@@ -2939,10 +2943,10 @@
 
     // 清除按鈕邏輯
     clearBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // 防止手機端鍵盤事件造成頁面閃爍
+      e.preventDefault();
       amountInput.value = '';
       checkRange();
-      amountInput.focus(); // 清除後讓游標留在輸入框，方便重新輸入
+      amountInput.focus();
     });
 
     minusBtn.addEventListener('click', (e) => {
