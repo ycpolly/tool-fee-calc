@@ -36,8 +36,6 @@
       color: var(--text-main);
       margin: 0;
       line-height: 1.5;
-      padding-top: 104px;
-      /* 給頂部固定區域留出空間 */
     }
 
     .container {
@@ -46,9 +44,9 @@
       margin: 0 auto;
     }
 
-    /* 頂部固定容器 */
+    /* 頂部固定容器：改為 sticky 徹底避開 iOS 鍵盤彈起時 fixed 被推走的 Bug */
     .top-sticky-container {
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       right: 0;
@@ -72,34 +70,38 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    /* 置頂控制列：優化為整合式橫條 */
+    /* 置頂控制列 */
     .top-control-bar {
       display: flex;
       align-items: center;
       background-color: #ffffff;
       padding: 8px 16px;
-      height: 60px;
+      height: 68px;
+      /* 容納 52px 的元件後，上下留白最舒適的高度 */
       border-bottom: 1px solid var(--border-color);
     }
 
-    /* 移除膠囊外觀，改為簡潔的整合型輸入框組 */
+    /* 整合型輸入框組：移除原本的右下角浮動大膠囊 CSS */
     .input-group {
       display: flex;
       width: 100%;
       border: 1px solid var(--border-color);
       border-radius: 6px;
-      /* 改為微圓角，視覺更精緻協調 */
+      /* 微圓角排版更顯協調 */
       overflow: hidden;
       background-color: var(--bg-color);
     }
 
+    /* 輸入框加高 */
     .input-group input[type="number"] {
       border: none;
       outline: none;
-      padding: 0 12px;
-      height: 42px;
+      padding: 0 16px;
+      height: 52px;
+      /* 輸入框高度加高至 52px */
       flex: 1;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      /* 配合加高後的視覺比例放大字體 */
       font-weight: 600;
       background: transparent;
       width: 100%;
@@ -121,11 +123,14 @@
       align-items: center;
     }
 
-    /* 控制列所有按鈕的統一核心樣式 */
+    /* 控制列按鈕核心樣式：所有清除、加減按鈕尺寸統一為 52x52 */
     .input-group button {
       border: none;
       background-color: transparent;
-      height: 42px;
+      width: 52px;
+      /* 寬度統一 52px */
+      height: 52px;
+      /* 高度統一 52px */
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -133,24 +138,23 @@
       transition: background-color 0.2s;
     }
 
-    /* 清除按鈕樣式 */
+    /* 清除按鈕微調 */
     .input-group .btn-clear {
       color: var(--text-muted);
-      font-size: 0.9rem;
-      width: 36px;
+      font-size: 1rem;
     }
 
     .input-group .btn-clear:hover {
       color: #ef4444;
+      background-color: rgba(0, 0, 0, 0.02);
     }
 
-    /* 加減按鈕樣式 */
+    /* 加減按鈕微調 */
     .input-group .btn-action {
       background-color: var(--primary-light);
       color: var(--primary-color);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       font-weight: bold;
-      width: 44px;
       border-left: 1px solid var(--border-color);
     }
 
@@ -158,12 +162,13 @@
       background-color: #dbeafe;
     }
 
+    /* 防止雙擊放大與手機點擊優化 */
     .input-group button,
     .input-group input[type="number"] {
       touch-action: manipulation;
     }
 
-    /* 仿表格卡片 */
+    /* 使用 Flexbox 打造的仿表格卡片 */
     .table-card {
       background-color: var(--card-bg);
       overflow: hidden;
@@ -171,24 +176,33 @@
       flex-direction: column;
     }
 
+    /* 表格中的「列」結構 */
     .table-row {
       display: flex;
       width: 100%;
       align-items: middle;
       transition: background-color 0.2s ease;
-      scroll-margin-top: 104px;
+      /* 關鍵設定：讓滾動時能剛好停在頂部固定列的下方 (標題44px + 控制列68px = 112px) */
+      scroll-margin-top: 112px;
     }
 
+    .table-row:last-child {
+      border-bottom: none;
+    }
+
+    /* 斑馬紋交替背景色 */
     .table-body .table-row:nth-child(even) {
       background-color: var(--primary-light);
     }
 
+    /* 欄位通用樣式 */
     .table-cell {
       padding: 0.75rem 1rem;
       display: flex;
       align-items: center;
     }
 
+    /* 分配與原本 table 一致的寬度比例 */
     .col-1 {
       width: 15%;
       justify-content: center;
@@ -202,6 +216,7 @@
       width: 45%;
     }
 
+    /* 當輸入金額命中區間時的高亮樣式 */
     .table-row.highlighted {
       background-color: var(--highlight-color) !important;
       position: relative;
@@ -229,6 +244,7 @@
       line-height: 1.3;
     }
 
+    /* RWD 手機版微調 */
     @media (max-width: 480px) {
       .table-cell {
         padding: 0.6rem 0.5rem;
