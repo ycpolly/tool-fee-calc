@@ -36,7 +36,8 @@
       color: var(--text-main);
       margin: 0;
       line-height: 1.5;
-      padding-top: 104px; /* 給最上方固定的兩個列留出空間 (44px + 60px) */
+      padding-top: 104px;
+      /* 給頂部固定區域留出空間 */
     }
 
     .container {
@@ -45,12 +46,13 @@
       margin: 0 auto;
     }
 
-    /* 將標題與輸入框包裹在同一個 fixed 容器中 */
+    /* 頂部固定容器 */
     .top-sticky-container {
       position: fixed;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
+      margin: 0 auto;
       width: 100%;
       max-width: 700px;
       z-index: 1000;
@@ -70,64 +72,60 @@
       border-bottom: 1px solid var(--border-color);
     }
 
-    /* 置頂輸入控制列 */
+    /* 置頂控制列：優化為整合式橫條 */
     .top-control-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
       background-color: #ffffff;
-      padding: 6px 16px;
+      padding: 8px 16px;
       height: 60px;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .search-capsule {
+    /* 移除膠囊外觀，改為簡潔的整合型輸入框組 */
+    .input-group {
       display: flex;
-      align-items: center;
-      background-color: var(--bg-color);
-      border-radius: 50px;
-      border: 1px solid var(--border-color);
-      padding: 2px;
       width: 100%;
-      max-width: 400px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      /* 改為微圓角，視覺更精緻協調 */
+      overflow: hidden;
+      background-color: var(--bg-color);
     }
 
-    .search-capsule input[type="number"] {
+    .input-group input[type="number"] {
       border: none;
       outline: none;
-      padding: 0 16px;
-      height: 44px;
+      padding: 0 12px;
+      height: 42px;
       flex: 1;
       font-size: 1.1rem;
       font-weight: 600;
-      border-radius: 50px 0 0 50px;
       background: transparent;
       width: 100%;
     }
 
     /* 隱藏輸入框自帶的微調按鈕 */
-    .search-capsule input[type="number"]::-webkit-outer-spin-button,
-    .search-capsule input[type="number"]::-webkit-inner-spin-button {
+    .input-group input[type="number"]::-webkit-outer-spin-button,
+    .input-group input[type="number"]::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-    .search-capsule input[type="number"] {
+
+    .input-group input[type="number"] {
       -moz-appearance: textfield;
     }
 
-    .search-capsule .btn-group {
+    .input-group .btn-group {
       display: flex;
-      gap: 2px;
+      align-items: center;
     }
 
-    .search-capsule button {
+    /* 控制列所有按鈕的統一核心樣式 */
+    .input-group button {
       border: none;
-      background-color: var(--primary-light);
-      color: var(--primary-color);
-      font-size: 1.3rem;
-      font-weight: bold;
-      width: 44px;
-      height: 44px;
+      background-color: transparent;
+      height: 42px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -135,20 +133,33 @@
       transition: background-color 0.2s;
     }
 
-    .search-capsule button:hover {
+    /* 清除按鈕樣式 */
+    .input-group .btn-clear {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      width: 36px;
+    }
+
+    .input-group .btn-clear:hover {
+      color: #ef4444;
+    }
+
+    /* 加減按鈕樣式 */
+    .input-group .btn-action {
+      background-color: var(--primary-light);
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      font-weight: bold;
+      width: 44px;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .input-group .btn-action:hover {
       background-color: #dbeafe;
     }
 
-    .search-capsule button.btn-minus {
-      border-radius: 0;
-    }
-
-    .search-capsule button.btn-plus {
-      border-radius: 0 50px 50px 0;
-    }
-
-    .search-capsule button,
-    .search-capsule input[type="number"] {
+    .input-group button,
+    .input-group input[type="number"] {
       touch-action: manipulation;
     }
 
@@ -165,8 +176,7 @@
       width: 100%;
       align-items: middle;
       transition: background-color 0.2s ease;
-      /* 關鍵設定：讓滾動時能剛好停在頂部固定列的下方，不會被標題遮住 */
-      scroll-margin-top: 104px; 
+      scroll-margin-top: 104px;
     }
 
     .table-body .table-row:nth-child(even) {
@@ -179,9 +189,18 @@
       align-items: center;
     }
 
-    .col-1 { width: 15%; justify-content: center; }
-    .col-2 { width: 40%; }
-    .col-3 { width: 45%; }
+    .col-1 {
+      width: 15%;
+      justify-content: center;
+    }
+
+    .col-2 {
+      width: 40%;
+    }
+
+    .col-3 {
+      width: 45%;
+    }
 
     .table-row.highlighted {
       background-color: var(--highlight-color) !important;
@@ -220,23 +239,24 @@
 
 <body>
   <div class="container">
-    <!-- 置頂容器：包含標題列與輸入控制列 -->
+    <!-- 置頂容器 -->
     <div class="top-sticky-container">
-            <div class="top-control-bar">
-        <div class="search-capsule">
-          <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
-          <div class="btn-group">
-            <button class="btn-minus" id="minusBtn">−</button>
-            <button class="btn-plus" id="plusBtn">＋</button>
-          </div>
-        </div>
-      </div>
       <div class="table-header">
         <div class="table-cell col-1">手續費</div>
         <div class="table-cell col-2">區間</div>
         <div class="table-cell col-3">備註</div>
       </div>
-
+      <div class="top-control-bar">
+        <div class="input-group">
+          <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
+          <div class="btn-group">
+            <!-- 新增：一鍵清除按鈕 -->
+            <button class="btn-clear" id="clearBtn" title="清除金額">✕</button>
+            <button class="btn-action btn-minus" id="minusBtn">−</button>
+            <button class="btn-action btn-plus" id="plusBtn">＋</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="table-card">
@@ -2847,6 +2867,7 @@
 
   <script>
     const amountInput = document.getElementById('amountInput');
+    const clearBtn = document.getElementById('clearBtn');
     const minusBtn = document.getElementById('minusBtn');
     const plusBtn = document.getElementById('plusBtn');
     const rows = document.querySelectorAll('.table-body .table-row');
@@ -2890,7 +2911,6 @@
       if (match) {
         match.row.classList.add('highlighted');
 
-        // 改用 'start' 對齊，配合 CSS 的 scroll-margin-top，選中的項目會完美的頂在控制列下方
         match.row.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
@@ -2901,7 +2921,16 @@
     // 監聽事件
     amountInput.addEventListener('input', checkRange);
 
-    minusBtn.addEventListener('click', () => {
+    // 清除按鈕邏輯
+    clearBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // 防止手機端鍵盤事件造成頁面閃爍
+      amountInput.value = '';
+      checkRange();
+      amountInput.focus(); // 清除後讓游標留在輸入框，方便重新輸入
+    });
+
+    minusBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       let currentVal = parseInt(amountInput.value, 10) || 0;
       if (currentVal > 0) {
         amountInput.value = currentVal - 1;
@@ -2909,7 +2938,8 @@
       }
     });
 
-    plusBtn.addEventListener('click', () => {
+    plusBtn.addEventListener('click', (e) => {
+      e.preventDefault();
       let currentVal = parseInt(amountInput.value, 10) || 0;
       amountInput.value = currentVal + 1;
       checkRange();
