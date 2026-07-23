@@ -2929,6 +2929,13 @@
     // 監聽事件
     amountInput.addEventListener('input', checkRange);
 
+    // 當輸入框聚焦時，等待手機鍵盤彈起後重新修正滾動位置
+    amountInput.addEventListener('focus', () => {
+      setTimeout(() => {
+        checkRange();
+      }, 300);
+    });
+
     minusBtn.addEventListener('click', () => {
       let currentVal = parseInt(amountInput.value, 10) || 0;
       if (currentVal > 0) {
@@ -2943,18 +2950,14 @@
       checkRange();
     });
 
+    // 鍵盤避讓功能（只保留一組，乾淨又漂亮）
     if (window.visualViewport) {
       const capsule = document.querySelector('.floating-capsule');
-
       window.visualViewport.addEventListener('resize', () => {
-        // 取得當前可視區域與視窗頂部的距離差
         const offsetBottom = window.innerHeight - window.visualViewport.height;
-
         if (offsetBottom > 0) {
-          // 鍵盤彈起時：動態將底部距離設為「鍵盤高度 + 原本的間距」
           capsule.style.bottom = `calc(${offsetBottom}px + 1rem)`;
         } else {
-          // 鍵盤收起時：恢復原本的 CSS 設定
           capsule.style.bottom = '';
         }
       });
