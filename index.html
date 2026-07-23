@@ -2950,13 +2950,14 @@
       checkRange();
     });
 
-    // 鍵盤避讓功能（只保留一組，乾淨又漂亮）
+    // 修正版的鍵盤避讓功能：直接緊貼鍵盤上方
     if (window.visualViewport) {
       const capsule = document.querySelector('.floating-capsule');
       window.visualViewport.addEventListener('resize', () => {
         const offsetBottom = window.innerHeight - window.visualViewport.height;
         if (offsetBottom > 0) {
-          capsule.style.bottom = `calc(${offsetBottom}px + 1rem)`;
+          // 移除原本加上的 1rem 或 safe-area，直接對齊鍵盤頂端
+          capsule.style.bottom = `${offsetBottom}px`;
         } else {
           capsule.style.bottom = '';
         }
