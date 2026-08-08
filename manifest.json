@@ -1,0 +1,17 @@
+{
+  "name": "台股零股手續費計算機",
+  "short_name": "手續費計算機",
+  "description": "專為台股零股/散戶打造的手續費區間與 6 折最佳點計算工具",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#3b4a6b",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

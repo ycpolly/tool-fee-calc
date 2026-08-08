@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>台股零股手續費計算機</title>
   <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#3b4a6b">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
@@ -99,7 +103,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 16px 16px 0;
+      padding: 16px 16px 4px;
       gap: 6px;
     }
 
@@ -179,8 +183,7 @@
     .input-group {
       display: flex;
       width: 100%;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      border-radius: 12px;
       overflow: hidden;
       background-color: var(--bg-color);
     }
@@ -224,9 +227,13 @@
       transition: background-color 0.2s;
     }
 
+    .input-group button svg {
+      display: block;
+      pointer-events: none;
+    }
+
     .input-group .btn-clear {
       color: var(--text-muted);
-      font-size: 1rem;
     }
 
     .input-group .btn-clear:hover {
@@ -237,8 +244,6 @@
     .input-group .btn-action {
       background-color: var(--primary-light);
       color: var(--primary-color);
-      font-size: 1.3rem;
-      font-weight: bold;
       border-left: 1px solid var(--border-color);
     }
 
@@ -342,9 +347,26 @@
         <div class="input-group">
           <input type="number" id="amountInput" placeholder="請輸入手續費金額" min="0" inputmode="numeric" pattern="[0-9]*">
           <div class="btn-group">
-            <button class="btn-clear" id="clearBtn" title="清除金額">✕</button>
-            <button class="btn-action btn-minus" id="minusBtn">−</button>
-            <button class="btn-action btn-plus" id="plusBtn">＋</button>
+            <button class="btn-clear" id="clearBtn" title="清除金額" aria-label="清除金額">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <button class="btn-action btn-minus" id="minusBtn" title="減少金額" aria-label="減少金額">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+            <button class="btn-action btn-plus" id="plusBtn" title="增加金額" aria-label="增加金額">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
           </div>
         </div>
         <div class="hint-bar" id="hintBar"></div>
@@ -353,7 +375,7 @@
         <div class="table-cell col-1">手續費</div>
         <div class="table-cell col-2">區間</div>
         <div class="table-cell col-3">備註</div>
-        <span class="version-tag" id="versionTag" title="點擊強制重新整理頁面">v0808.02</span>
+        <span class="version-tag" id="versionTag" title="點擊強制重新整理頁面">v0808.03</span>
       </div>
     </div>
 
