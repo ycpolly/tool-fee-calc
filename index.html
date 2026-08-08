@@ -19,7 +19,7 @@
       --text-main: #1f2937;
       --text-muted: #6b7280;
       --border-color: #e5e7eb;
-      --highlight-color: #fef08a;
+      --highlight-color: #f8f2e1;
       --highlight-border: #eab308;
     }
 
@@ -71,11 +71,59 @@
 
     .top-control-bar {
       display: flex;
+      flex-direction: column;
       align-items: center;
       background-color: #ffffff;
       padding: 8px 16px;
-      height: 68px;
       border-bottom: 1px solid var(--border-color);
+      gap: 6px;
+    }
+
+    .hint-bar {
+      width: 100%;
+      padding: 6px 12px;
+      font-size: 0.825rem;
+      color: #1e40af;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 500;
+      display: none;
+    }
+
+    .hint-bar strong {
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .fee-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .best-discount-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      background-color: #dbeafe;
+      border: 1px solid #93c5fd;
+      padding: 1px 4px;
+      border-radius: 3px;
+      margin-top: 2px;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+
+    .fee-discount-text {
+      font-size: 0.6rem;
+      color: #2563eb;
+      margin-top: 6px;
+      line-height: 1;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     .input-group {
@@ -177,7 +225,7 @@
       border-bottom: none;
     }
 
-    .table-body .table-row:nth-child(even) {
+    .table-body .table-row.row-best-discount {
       background-color: var(--primary-light);
     }
 
@@ -188,12 +236,12 @@
     }
 
     .col-1 {
-      width: 15%;
+      width: 17%;
       justify-content: center;
     }
 
     .col-2 {
-      width: 40%;
+      width: 38%;
     }
 
     .col-3 {
@@ -253,6 +301,7 @@
             <button class="btn-action btn-plus" id="plusBtn">＋</button>
           </div>
         </div>
+        <div class="hint-bar" id="hintBar"></div>
       </div>
     </div>
 
@@ -268,6 +317,7 @@
     const minusBtn = document.getElementById('minusBtn');
     const plusBtn = document.getElementById('plusBtn');
     const tableBody = document.getElementById('feeTableBody');
+    const hintBar = document.getElementById('hintBar');
 
     const allData = [];
     const totalRows = 200;
@@ -288,10 +338,21 @@
       const exp1 = `${formatMin} × 0.1425% = ${(currentMin * 0.001425).toFixed(6).replace(/0+$/, '').replace(/\.$/, '')}`;
       const exp2 = `${formatMax} × 0.1425% = ${(currentMax * 0.001425).toFixed(6).replace(/0+$/, '').replace(/\.$/, '')}`;
 
+      const isBest = (i % 5 === 0);
+      const discountedFee = i * 0.6;
+      const bestTag = isBest
+        ? `<span class="best-discount-tag">最佳折讓</span><span class="fee-discount-text">${i} → ${discountedFee}</span>`
+        : '';
+
       const row = document.createElement('div');
-      row.className = 'table-row';
+      row.className = 'table-row' + (isBest ? ' row-best-discount' : '');
       row.innerHTML = `
-        <div class="table-cell col-1"><span class="fee-badge">${i}</span></div>
+        <div class="table-cell col-1">
+          <div class="fee-col">
+            <span class="fee-badge">${i}</span>
+            ${bestTag}
+          </div>
+        </div>
         <div class="table-cell col-2"><div class="amount-range">${formatMin} - ${formatMax}</div></div>
         <div class="table-cell col-3"><div class="explanation">${exp1}<br>${exp2}</div></div>
       `;
@@ -300,7 +361,7 @@
       currentMin = currentMax + 1;
     }
 
-    // 2. 渲染函式（已修正 5 列顯示失敗的迴圈 Bug）
+    // 2. 渲染函式
     function renderTable() {
       const value = parseInt(amountInput.value, 10);
 
@@ -310,6 +371,7 @@
       // 【情況 A】沒有輸入數值：展示完整 200 列清單
       if (isNaN(value)) {
         allData.forEach(item => tableBody.appendChild(item.element));
+        hintBar.style.display = 'none';
         return;
       }
 
@@ -317,13 +379,33 @@
       const matchIndex = allData.findIndex(item => value >= item.min && value <= item.max);
 
       if (matchIndex !== -1) {
+        const currentFee = matchIndex + 1;
         allData[matchIndex].element.classList.add('highlighted');
 
-        // 【情況 B】精準切換為：上下各兩階 + 當前命中列 = 共 5 列
-        const start = Math.max(0, matchIndex - 2);
-        const end = Math.min(allData.length - 1, matchIndex + 2);
+        // 輸入框下方提示（無 emoji，藍色系）
+        if (currentFee % 5 === 0) {
+          hintBar.innerHTML = `當前金額手續費為 <strong>${currentFee}</strong> 元（6折最佳折讓點）`;
+        } else {
+          const targetFee = Math.ceil(currentFee / 5) * 5;
+          const targetMin = allData[targetFee - 1].min;
+          const diff = targetMin - value;
+          hintBar.innerHTML = `再加買 <strong>NT$ ${diff.toLocaleString()}</strong> 即可達手續費 <strong>${targetFee}</strong> 元（6折最佳點）`;
+        }
+        hintBar.style.display = 'block';
 
-        // 修正後的正確 For 迴圈
+        // 【情況 B】若當前手續費已是 5 的倍數：保持顯示中心 5 筆；非 5 的倍數：涵蓋 lower(如 55) ~ upper(如 60)
+        let startFee, endFee;
+        if (currentFee % 5 === 0) {
+          startFee = Math.max(1, currentFee - 2);
+          endFee = Math.min(totalRows, currentFee + 2);
+        } else {
+          startFee = Math.floor(currentFee / 5) * 5;
+          endFee = Math.ceil(currentFee / 5) * 5;
+        }
+
+        const start = Math.max(0, startFee - 1);
+        const end = Math.min(allData.length - 1, endFee - 1);
+
         for (let k = start; k <= end; k++) {
           tableBody.appendChild(allData[k].element);
         }
@@ -333,6 +415,9 @@
           tableBody.appendChild(allData[k].element);
         }
         allData[allData.length - 1].element.classList.add('highlighted');
+        hintBar.style.display = 'none';
+      } else {
+        hintBar.style.display = 'none';
       }
     }
 
