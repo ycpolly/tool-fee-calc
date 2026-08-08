@@ -56,7 +56,7 @@
       width: 100%;
       max-width: 700px;
       z-index: 1000;
-      background-color: var(--bg-color);
+      background-color: var(--primary-color);
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     }
 
@@ -64,11 +64,9 @@
       display: flex;
       width: 100%;
       height: 44px;
-      background-color: var(--primary-color);
       color: #ffffff;
       font-weight: 600;
       font-size: .8rem;
-      border-bottom: 1px solid var(--border-color);
       position: relative;
     }
 
@@ -83,15 +81,25 @@
       color: #ffffff;
       letter-spacing: 0.5px;
       font-family: monospace, sans-serif;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .version-tag:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .version-tag:active {
+      transform: translateY(-50%) scale(0.95);
     }
 
     .top-control-bar {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background-color: #ffffff;
-      padding: 8px 16px;
-      border-bottom: 1px solid var(--border-color);
+      padding: 16px 16px 0;
       gap: 6px;
     }
 
@@ -329,15 +337,10 @@
   <div class="container">
     <!-- 置頂容器 -->
     <div class="top-sticky-container">
-      <div class="table-header">
-        <div class="table-cell col-1">手續費</div>
-        <div class="table-cell col-2">區間</div>
-        <div class="table-cell col-3">備註</div>
-        <span class="version-tag">v0808.02</span>
-      </div>
+
       <div class="top-control-bar">
         <div class="input-group">
-          <input type="number" id="amountInput" placeholder="請輸入金額" min="0" inputmode="numeric" pattern="[0-9]*">
+          <input type="number" id="amountInput" placeholder="請輸入手續費金額" min="0" inputmode="numeric" pattern="[0-9]*">
           <div class="btn-group">
             <button class="btn-clear" id="clearBtn" title="清除金額">✕</button>
             <button class="btn-action btn-minus" id="minusBtn">−</button>
@@ -345,6 +348,12 @@
           </div>
         </div>
         <div class="hint-bar" id="hintBar"></div>
+      </div>
+      <div class="table-header">
+        <div class="table-cell col-1">手續費</div>
+        <div class="table-cell col-2">區間</div>
+        <div class="table-cell col-3">備註</div>
+        <span class="version-tag" id="versionTag" title="點擊強制重新整理頁面">v0808.02</span>
       </div>
     </div>
 
@@ -487,6 +496,13 @@
         amountInput.focus();
       }
     });
+
+    const versionTag = document.getElementById('versionTag');
+    if (versionTag) {
+      versionTag.addEventListener('click', () => {
+        window.location.reload(true);
+      });
+    }
 
     clearBtn.addEventListener('click', (e) => {
       e.preventDefault();
