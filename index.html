@@ -92,7 +92,6 @@
 
     .version-tag:hover {
       opacity: 1;
-      text-decoration: underline;
     }
 
     .version-tag:active {
@@ -104,21 +103,22 @@
       flex-direction: column;
       align-items: center;
       padding: 16px 16px 4px;
-      gap: 6px;
+      gap: 0px;
     }
 
     .hint-bar {
+      z-index: -1;
       width: 100%;
       padding: 6px 12px;
       font-size: 0.825rem;
-      color: #3b4a6b;
-      background-color: var(--primary-light);
-      border: 1px solid #d6dfed;
-      border-radius: 6px;
+      color: rgba(255, 255, 255, 0.88);
+      background-color: rgba(0, 0, 0, 0.18);
+      border-radius: 8px;
       text-align: center;
       font-weight: 500;
       display: none;
       transition: all 0.15s ease;
+      box-shadow: 0 -12px 0 0px rgba(0, 0, 0, 0.18);
       touch-action: manipulation;
     }
 
@@ -127,8 +127,8 @@
     }
 
     .hint-bar.clickable:hover {
-      background-color: #e4ebf7;
-      border-color: #c5d3ea;
+      background-color: rgba(0, 0, 0, 0.28);
+      border-color: rgba(255, 255, 255, 0.25);
     }
 
     .hint-bar.clickable:active {
@@ -137,14 +137,13 @@
 
     .hint-bar strong {
       font-weight: 700;
-      color: #1e2942;
+      color: #ffffff;
     }
 
     .hint-action-text {
       font-size: 0.75rem;
       font-weight: 600;
-      color: #3b4a6b;
-      opacity: 0.85;
+      color: rgba(255, 255, 255, 0.95);
       margin-left: 4px;
       text-decoration: underline;
     }
@@ -183,7 +182,7 @@
     .input-group {
       display: flex;
       width: 100%;
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
       background-color: var(--bg-color);
     }
@@ -375,7 +374,7 @@
         <div class="table-cell col-1">手續費</div>
         <div class="table-cell col-2">區間</div>
         <div class="table-cell col-3">備註</div>
-        <span class="version-tag" id="versionTag" title="點擊強制重新整理頁面">v0808.03</span>
+        <span class="version-tag" id="versionTag" title="點擊強制重新整理頁面">v0808.04</span>
       </div>
     </div>
 
@@ -458,7 +457,7 @@
 
         // 輸入框下方提示（無 emoji，藍色系）
         if (currentFee % 5 === 0) {
-          hintBar.innerHTML = `當前金額手續費為 <strong>${currentFee}</strong> 元（6折最佳折讓點）`;
+          hintBar.innerHTML = `目前金額手續費為 <strong>${currentFee}</strong> 元（6折最佳折讓點）`;
           hintBar.classList.remove('clickable');
           delete hintBar.dataset.targetAmount;
         } else {
