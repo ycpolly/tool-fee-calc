@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>手續費區間表</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>台股零股手續費計算機</title>
   <meta name="format-detection" content="telephone=no">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,8 @@
   <style>
     :root {
       --font-size-base: 16px;
-      --primary-color: #1e3a8a;
-      --primary-light: #eff6ff;
+      --primary-color: #3b4a6b;
+      --primary-light: #f0f3f9;
       --bg-color: #f8fafc;
       --card-bg: #ffffff;
       --text-main: #1f2937;
@@ -42,6 +42,8 @@
       width: 100%;
       max-width: 700px;
       margin: 0 auto;
+      padding-bottom: 24px;
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
     }
 
     /* 置頂容器 */
@@ -67,6 +69,20 @@
       font-weight: 600;
       font-size: .8rem;
       border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .version-tag {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      font-size: 0.65rem;
+      font-weight: 400;
+      opacity: 0.75;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      font-family: monospace, sans-serif;
     }
 
     .top-control-bar {
@@ -83,16 +99,42 @@
       width: 100%;
       padding: 6px 12px;
       font-size: 0.825rem;
-      color: #1e40af;
+      color: #3b4a6b;
+      background-color: var(--primary-light);
+      border: 1px solid #d6dfed;
       border-radius: 6px;
       text-align: center;
       font-weight: 500;
       display: none;
+      transition: all 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .hint-bar.clickable {
+      cursor: pointer;
+    }
+
+    .hint-bar.clickable:hover {
+      background-color: #e4ebf7;
+      border-color: #c5d3ea;
+    }
+
+    .hint-bar.clickable:active {
+      transform: scale(0.98);
     }
 
     .hint-bar strong {
       font-weight: 700;
-      color: var(--primary-color);
+      color: #1e2942;
+    }
+
+    .hint-action-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #3b4a6b;
+      opacity: 0.85;
+      margin-left: 4px;
+      text-decoration: underline;
     }
 
     .fee-col {
@@ -108,8 +150,8 @@
       font-size: 0.6rem;
       font-weight: 600;
       color: var(--primary-color);
-      background-color: #dbeafe;
-      border: 1px solid #93c5fd;
+      background-color: #dce4f2;
+      border: 1px solid #bfcee8;
       padding: 1px 4px;
       border-radius: 3px;
       margin-top: 2px;
@@ -119,7 +161,7 @@
 
     .fee-discount-text {
       font-size: 0.6rem;
-      color: #2563eb;
+      color: #4f618a;
       margin-top: 6px;
       line-height: 1;
       font-weight: 600;
@@ -193,7 +235,7 @@
     }
 
     .input-group .btn-action:hover {
-      background-color: #dbeafe;
+      background-color: #d9e2ec;
     }
 
     .input-group button,
@@ -236,12 +278,12 @@
     }
 
     .col-1 {
-      width: 17%;
+      width: 20%;
       justify-content: center;
     }
 
     .col-2 {
-      width: 38%;
+      width: 35%;
     }
 
     .col-3 {
@@ -291,6 +333,7 @@
         <div class="table-cell col-1">手續費</div>
         <div class="table-cell col-2">區間</div>
         <div class="table-cell col-3">備註</div>
+        <span class="version-tag">v0808.02</span>
       </div>
       <div class="top-control-bar">
         <div class="input-group">
@@ -385,11 +428,15 @@
         // 輸入框下方提示（無 emoji，藍色系）
         if (currentFee % 5 === 0) {
           hintBar.innerHTML = `當前金額手續費為 <strong>${currentFee}</strong> 元（6折最佳折讓點）`;
+          hintBar.classList.remove('clickable');
+          delete hintBar.dataset.targetAmount;
         } else {
           const targetFee = Math.ceil(currentFee / 5) * 5;
           const targetMin = allData[targetFee - 1].min;
           const diff = targetMin - value;
-          hintBar.innerHTML = `再加買 <strong>NT$ ${diff.toLocaleString()}</strong> 即可達手續費 <strong>${targetFee}</strong> 元（6折最佳點）`;
+          hintBar.innerHTML = `再加 <strong>NT$ ${diff.toLocaleString()}</strong> 即可達手續費 <strong>${targetFee}</strong> 元 <span class="hint-action-text">一鍵湊滿 ➔</span>`;
+          hintBar.classList.add('clickable');
+          hintBar.dataset.targetAmount = targetMin;
         }
         hintBar.style.display = 'block';
 
@@ -430,6 +477,15 @@
         amountInput.value = amountInput.value.slice(0, 6); // 超過 6 位數時，只保留前 6 個字
       }
       renderTable(); // 限制完長度後，再執行表格切換渲染
+    });
+
+    hintBar.addEventListener('click', () => {
+      const targetAmount = hintBar.dataset.targetAmount;
+      if (targetAmount) {
+        amountInput.value = targetAmount;
+        renderTable();
+        amountInput.focus();
+      }
     });
 
     clearBtn.addEventListener('click', (e) => {
